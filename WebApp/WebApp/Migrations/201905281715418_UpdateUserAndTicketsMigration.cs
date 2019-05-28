@@ -3,10 +3,29 @@ namespace WebApp.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class UserTableUpdateProperyMigration : DbMigration
+    public partial class UpdateUserAndTicketsMigration : DbMigration
     {
         public override void Up()
         {
+            CreateTable(
+                "dbo.Tickets",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        TicketTypeID = c.Int(),
+                        CatalogueHistoryID = c.Int(nullable: false),
+                        ApplicationUserID = c.String(nullable: false, maxLength: 128),
+                        IsValid = c.Boolean(nullable: false),
+                        TimeIssued = c.String(nullable: false, maxLength: 20),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.AspNetUsers", t => t.ApplicationUserID, cascadeDelete: true)
+                .ForeignKey("dbo.CatalogueHistories", t => t.CatalogueHistoryID, cascadeDelete: true)
+                .ForeignKey("dbo.TicketTypes", t => t.TicketTypeID)
+                .Index(t => t.TicketTypeID)
+                .Index(t => t.CatalogueHistoryID)
+                .Index(t => t.ApplicationUserID);
+            
             AddColumn("dbo.AspNetUsers", "FirstName", c => c.String(nullable: false, maxLength: 15));
             AddColumn("dbo.AspNetUsers", "LastName", c => c.String(nullable: false, maxLength: 15));
             AddColumn("dbo.AspNetUsers", "BirthDate", c => c.String(nullable: false, maxLength: 20));
@@ -21,8 +40,14 @@ namespace WebApp.Migrations
         
         public override void Down()
         {
+            DropForeignKey("dbo.Tickets", "TicketTypeID", "dbo.TicketTypes");
+            DropForeignKey("dbo.Tickets", "CatalogueHistoryID", "dbo.CatalogueHistories");
+            DropForeignKey("dbo.Tickets", "ApplicationUserID", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUsers", "PassengerTypeId", "dbo.PassengerTypes");
             DropIndex("dbo.AspNetUsers", new[] { "PassengerTypeId" });
+            DropIndex("dbo.Tickets", new[] { "ApplicationUserID" });
+            DropIndex("dbo.Tickets", new[] { "CatalogueHistoryID" });
+            DropIndex("dbo.Tickets", new[] { "TicketTypeID" });
             DropColumn("dbo.AspNetUsers", "PassengerTypeId");
             DropColumn("dbo.AspNetUsers", "VerificationStatus");
             DropColumn("dbo.AspNetUsers", "ImageUrl");
@@ -31,6 +56,7 @@ namespace WebApp.Migrations
             DropColumn("dbo.AspNetUsers", "BirthDate");
             DropColumn("dbo.AspNetUsers", "LastName");
             DropColumn("dbo.AspNetUsers", "FirstName");
+            DropTable("dbo.Tickets");
         }
     }
 }

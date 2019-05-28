@@ -27,6 +27,20 @@ namespace WebApp.Persistence.UnitOfWork
         public ICatalogueRepository Catalogues { get; set; }
         [Dependency]
         public ICatalogueHistoryRepository CatalogueHistory { get; set; }
+        [Dependency]
+        public ITicketRepository Tickets { get; set; }
+        [Dependency]
+        public IVehicleRepository Vehicles { get; set; }
+        [Dependency]
+        public ILineRepository Lines { get; set; }
+        [Dependency]
+        public IStationRepository Stations { get; set; }
+        [Dependency]
+        public IScheduleRepository Schedules { get; set; }
+        [Dependency]
+        public IScheduleTypeRepository ScheduleTypes { get; set; }
+        [Dependency]
+        public ILineTypeRepository LineTypes { get; set; }
 
         public int Complete()
         {

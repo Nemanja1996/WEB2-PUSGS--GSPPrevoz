@@ -7,13 +7,13 @@ namespace WebApp.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class UserTableUpdateProperyMigration : IMigrationMetadata
+    public sealed partial class RestModelsMigration : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(UserTableUpdateProperyMigration));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(RestModelsMigration));
         
         string IMigrationMetadata.Id
         {
-            get { return "201905281615416_UserTableUpdateProperyMigration"; }
+            get { return "201905281751575_RestModelsMigration"; }
         }
         
         string IMigrationMetadata.Source

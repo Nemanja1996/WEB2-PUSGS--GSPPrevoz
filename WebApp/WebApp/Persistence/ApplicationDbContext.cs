@@ -16,6 +16,13 @@ namespace WebApp.Persistence
         public DbSet<VehicleType> VehicleTypes { get; set; }
         public DbSet<Catalogue> Catalogue { get; set; }
         public DbSet<CatalogueHistory> CatalogueHistory { get; set; }
+        public DbSet<Ticket> Tickets { get; set; }
+        public DbSet<LineType> LineTypes { get; set; }
+        public DbSet<Line> Lines { get; set; }
+        public DbSet<Station> Stations { get; set; }
+        public DbSet<Vehicle> Vehicles { get; set; }
+        public DbSet<ScheduleType> ScheduleTypes { get; set; }
+        public DbSet<Schedule> Schedules { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)

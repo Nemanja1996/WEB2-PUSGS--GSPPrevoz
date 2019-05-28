@@ -74,6 +74,14 @@ namespace WebApp.App_Start
             container.RegisterType<IVehicleTypeRepository, VehicleTypeRepository>();
             container.RegisterType<ICatalogueRepository, CatalogueRepository>();
             container.RegisterType<ICatalogueHistoryRepository, CatalogueHistoryRepository>();
+            container.RegisterType<ITicketRepository, TicketRepository>();
+            container.RegisterType<IVehicleRepository, VehicleRepository>();
+            container.RegisterType<ILineRepository, LineRepository>();
+            container.RegisterType<ILineTypeRepository, LineTypeRepository>();
+            container.RegisterType<IStationRepository, StationRepository>();
+            container.RegisterType<IScheduleRepository, ScheduleRepository>();
+            container.RegisterType<IScheduleTypeRepository, ScheduleTypesRepository>();
+            
             container.RegisterType<IUnitOfWork, DemoUnitOfWork>();
 
         }
