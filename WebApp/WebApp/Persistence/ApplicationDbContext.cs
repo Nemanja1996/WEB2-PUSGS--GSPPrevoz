@@ -13,6 +13,10 @@ namespace WebApp.Persistence
     {
         public DbSet<PassengerType> PassengerTypes { get; set; }
         public DbSet<TicketType> TicketTypes { get; set; }
+        public DbSet<VehicleType> VehicleTypes { get; set; }
+        public DbSet<Catalogue> Catalogue { get; set; }
+        public DbSet<CatalogueHistory> CatalogueHistory { get; set; }
+
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {

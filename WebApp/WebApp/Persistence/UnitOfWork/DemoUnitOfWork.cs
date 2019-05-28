@@ -21,6 +21,12 @@ namespace WebApp.Persistence.UnitOfWork
         public IPassengerTypesRepository PassengerTypes { get; set; }
         [Dependency]
         public ITicketTypesRepository TicketTypes { get; set; }
+        [Dependency]
+        public IVehicleTypeRepository VehicleTypes { get; set; }
+        [Dependency]
+        public ICatalogueRepository Catalogues { get; set; }
+        [Dependency]
+        public ICatalogueHistoryRepository CatalogueHistory { get; set; }
 
         public int Complete()
         {
