@@ -253,7 +253,11 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LinesController.cs" />
     <Compile Include="Controllers\LineTypesController.cs" />
+    <Compile Include="Controllers\ScheduleTypesController.cs" />
+    <Compile Include="Controllers\StationsController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Controllers\VehiclesController.cs" />
+    <Compile Include="Controllers\VehicleTypesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -309,6 +313,7 @@
     <Compile Include="Models\TicketType.cs" />
     <Compile Include="Models\Vehicle.cs" />
     <Compile Include="Models\VehicleType.cs" />
+    <Compile Include="Models\WebAppContext.cs" />
     <Compile Include="Persistence\ApplicationDbContext.cs" />
     <Compile Include="Persistence\Repository\CatalogueHistoryRepository.cs" />
     <Compile Include="Persistence\Repository\CatalogueRepository.cs" />
