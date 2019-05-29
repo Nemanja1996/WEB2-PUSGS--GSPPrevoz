@@ -15,5 +15,7 @@ namespace WebApp.Models
         [Required]
         [StringLength(20)]
         public string ValidTo { get; set; }
+
+        public List<CatalogueHistory> CatalogueHistories { get; set; }
     }
 }

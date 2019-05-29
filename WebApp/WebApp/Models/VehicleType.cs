@@ -14,5 +14,7 @@ namespace WebApp.Models
         [StringLength(15)]
         public string Type { get; set; }
 
+        public List<Vehicle> Vehicles {get;set;}
+
     }
 }
