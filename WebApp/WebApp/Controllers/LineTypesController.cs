@@ -14,48 +14,50 @@ using WebApp.Persistence.UnitOfWork;
 
 namespace WebApp.Controllers
 {
-    public class LinesController : ApiController
+    public class LineTypesController : ApiController
     {
         //private ApplicationDbContext db = new ApplicationDbContext();
         private IUnitOfWork db;
-        public LinesController(IUnitOfWork db)
+
+        public LineTypesController(IUnitOfWork db)
         {
             this.db = db;
         }
-        // GET: api/Lines
-        public IEnumerable<Line> GetLines()
+
+        // GET: api/LineTypes
+        public IEnumerable<LineType> GetLineTypes()
         {
-            return db.Lines.GetAll();
+            return db.LineTypes.GetAll();
         }
 
-        // GET: api/Lines/5
-        [ResponseType(typeof(Line))]
-        public IHttpActionResult GetLine(int id)
+        // GET: api/LineTypes/5
+        [ResponseType(typeof(LineType))]
+        public IHttpActionResult GetLineType(int id)
         {
-            Line line = db.Lines.Get(id);
-            if (line == null)
+            LineType lineType = db.LineTypes.Get(id);
+            if (lineType == null)
             {
                 return NotFound();
             }
 
-            return Ok(line);
+            return Ok(lineType);
         }
 
-        //// PUT: api/Lines/5
+        // PUT: api/LineTypes/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutLine(int id, Line line)
+        public IHttpActionResult PutLineType(int id, LineType lineType)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != line.Id)
+            if (id != lineType.Id)
             {
                 return BadRequest();
             }
 
-            db.Lines.Update(line);
+            db.LineTypes.Update(lineType);
 
             try
             {
@@ -63,7 +65,7 @@ namespace WebApp.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!LineExists(id))
+                if (!LineTypeExists(id))
                 {
                     return NotFound();
                 }
@@ -76,35 +78,35 @@ namespace WebApp.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Lines
-        [ResponseType(typeof(Line))]
-        public IHttpActionResult PostLine(Line line)
+        // POST: api/LineTypes
+        [ResponseType(typeof(LineType))]
+        public IHttpActionResult PostLineType(LineType lineType)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Lines.Add(line);
+            db.LineTypes.Add(lineType);
             db.Complete();
 
-            return CreatedAtRoute("DefaultApi", new { id = line.Id }, line);
+            return CreatedAtRoute("DefaultApi", new { id = lineType.Id }, lineType);
         }
 
-        // DELETE: api/Lines/5
-        [ResponseType(typeof(Line))]
-        public IHttpActionResult DeleteLine(int id)
+        // DELETE: api/LineTypes/5
+        [ResponseType(typeof(LineType))]
+        public IHttpActionResult DeleteLineType(int id)
         {
-            Line line = db.Lines.Get(id);
-            if (line == null)
+            LineType lineType = db.LineTypes.Get(id);
+            if (lineType == null)
             {
                 return NotFound();
             }
 
-            db.Lines.Remove(line);
+            db.LineTypes.Remove(lineType);
             db.Complete();
 
-            return Ok(line);
+            return Ok(lineType);
         }
 
         protected override void Dispose(bool disposing)
@@ -116,9 +118,9 @@ namespace WebApp.Controllers
             base.Dispose(disposing);
         }
 
-        private bool LineExists(int id)
+        private bool LineTypeExists(int id)
         {
-            return db.Lines.GetAll().Count(e => e.Id == id) > 0;
+            return db.LineTypes.GetAll().Count(e => e.Id == id) > 0;
         }
     }
 }
