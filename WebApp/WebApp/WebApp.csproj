@@ -287,6 +287,10 @@
     <Compile Include="Migrations\201905281751575_RestModelsMigration.Designer.cs">
       <DependentUpon>201905281751575_RestModelsMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905291159480_CorrectionMigration.cs" />
+    <Compile Include="Migrations\201905291159480_CorrectionMigration.Designer.cs">
+      <DependentUpon>201905291159480_CorrectionMigration.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -455,6 +459,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905281751575_RestModelsMigration.resx">
       <DependentUpon>201905281751575_RestModelsMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905291159480_CorrectionMigration.resx">
+      <DependentUpon>201905291159480_CorrectionMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -16,7 +16,7 @@ namespace WebApp.Models
         public double Latitude { get; set; }
         [Required]
         [StringLength(30)]
-        public string Adresa { get; set; }
+        public string Address { get; set; }
         public List<Line> Lines { get; set; }
 
     }
