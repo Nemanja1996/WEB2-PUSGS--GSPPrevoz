@@ -1,14 +1,28 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import {RouterModule, Routes} from '@angular/router'
+
 import { AppComponent } from './app.component';
+import { UnauthorizedUserComponent } from './unauthorized-user/unauthorized-user.component';
+import { UnauthorizedHeaderComponent } from './unauthorized-header/unauthorized-header.component';
+import { UnauthorizedNavBarComponent } from './unauthorized-nav-bar/unauthorized-nav-bar.component';
+
+const routes: Routes = [
+  {path: "", component: UnauthorizedUserComponent},
+  {path: "unauthorizedUser", component: UnauthorizedUserComponent}
+]
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    UnauthorizedUserComponent,
+    UnauthorizedHeaderComponent,
+    UnauthorizedNavBarComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]
