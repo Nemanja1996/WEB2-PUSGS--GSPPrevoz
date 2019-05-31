@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-unauthorized-header',
@@ -8,12 +7,7 @@ import { Router } from '@angular/router';
 })
 export class UnauthorizedHeaderComponent implements OnInit {
 
-  constructor(private router: Router) {
-  }
-
-  LogIn(){
-    this.router.navigate(['unauthorizedUser', 'logIn'])
-  }
+  constructor() { }
 
   ngOnInit() {
   }
