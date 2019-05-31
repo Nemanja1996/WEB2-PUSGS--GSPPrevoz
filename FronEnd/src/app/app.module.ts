@@ -24,17 +24,10 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    AppComponent,
-    UnauthorizeUserComponent,
-    UnauthorizedHeaderComponent,
-    UnauthorizedNavBarComponent,
-    LogInComponent,
-    RegisterComponent
+    AppComponent
   ],
   imports: [
-    BrowserModule,
-    HttpClientModule,
-    RouterModule.forRoot(routes)
+    BrowserModule
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}],
   bootstrap: [AppComponent]
