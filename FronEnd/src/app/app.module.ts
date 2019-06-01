@@ -17,6 +17,7 @@ import { ScheduleComponent } from './components/schedule/schedule.component';
 import { LinesGridComponent } from './components/lines-grid/lines-grid.component';
 import { VehicleLocationComponent } from './components/vehicle-location/vehicle-location.component';
 import { PriceListComponent } from './components/price-list/price-list.component';
+import { ScheduleHttpService } from './services/schedule/schedule.service';
 
 const childrenRoutes : Routes = [
   {path: "logIn", component: LogInComponent},
@@ -52,7 +53,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}, AuthService],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}, AuthService, ScheduleHttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
