@@ -19,7 +19,7 @@ import { VehicleLocationComponent } from './components/vehicle-location/vehicle-
 import { PriceListComponent } from './components/price-list/price-list.component';
 
 const childrenRoutes : Routes = [
-  {path: newFunction(), component: LogInComponent},
+  {path: "logIn", component: LogInComponent},
   {path: "register", component: RegisterComponent},
   {path: "schedule", component: ScheduleComponent},
   {path: "linesGrid", component: LinesGridComponent},
@@ -56,7 +56,5 @@ const routes: Routes = [
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-function newFunction(): string {
-  return "logIn";
-}
+
 
