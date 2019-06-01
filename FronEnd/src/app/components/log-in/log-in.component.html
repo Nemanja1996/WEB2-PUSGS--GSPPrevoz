@@ -1,19 +1,15 @@
-<div id="page-content-wrapper">
-    <div class="container-fluid">
-      <form [formGroup]="loginForm" (ngSubmit)="login()">
-        <label>
-          Username:
-          <input type="text" formControlName="username" required>
-        </label>
+<form [formGroup]="loginForm" (ngSubmit)="login()">
+  <label>
+    Username:
+    <input type="text" formControlName="username" required>
+  </label>
 
-        <label>
-          Password:
-          <input type="text" formControlName="password" required>
-        </label>
+  <label>
+    Password:
+    <input type="text" formControlName="password" required>
+  </label>
 
-        <button type="submit" [disabled]="!loginForm.valid" *ngIf="!authService.isLoggedIn">Login</button>
-        <button (click)="logout()" *ngIf="authService.isLoggedIn">Logout</button>
-      </form>
-      <h1>Ako nema profil onda <button (click)="Register()">Registracija</button></h1>
-    </div>
-  </div>
+  <button type="submit" [disabled]="!loginForm.valid" *ngIf="!authService.isLoggedIn">Login</button>
+  <button (click)="logout()" *ngIf="authService.isLoggedIn">Logout</button>
+</form>
+<h1>Ako nema profil onda <button (click)="Register()">Registracija</button></h1>
