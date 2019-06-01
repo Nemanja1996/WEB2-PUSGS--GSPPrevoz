@@ -35,6 +35,8 @@ export class AuthService {
 
         localStorage.setItem('jwt', jwt)
         localStorage.setItem('role', role);
+
+        this.isLoggedIn = true;
       }),
 
       catchError(this.handleError<any>('login'))

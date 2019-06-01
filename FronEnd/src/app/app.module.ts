@@ -11,10 +11,20 @@ import { UnauthorizedHeaderComponent } from './components/unauthorized-header/un
 import { UnauthorizedNavBarComponent } from './components/unauthorized-nav-bar/unauthorized-nav-bar.component';
 import { LogInComponent } from './components/log-in/log-in.component';
 import { RegisterComponent } from './components/register/register.component';
+import { AuthService } from './services/auth.service';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { ScheduleComponent } from './components/schedule/schedule.component';
+import { LinesGridComponent } from './components/lines-grid/lines-grid.component';
+import { VehicleLocationComponent } from './components/vehicle-location/vehicle-location.component';
+import { PriceListComponent } from './components/price-list/price-list.component';
 
 const childrenRoutes : Routes = [
-  {path: "logIn", component: LogInComponent},
-  {path: "register", component: RegisterComponent}
+  {path: newFunction(), component: LogInComponent},
+  {path: "register", component: RegisterComponent},
+  {path: "schedule", component: ScheduleComponent},
+  {path: "linesGrid", component: LinesGridComponent},
+  {path: "vehicleLocation", component: VehicleLocationComponent},
+  {path: "priceList", component: PriceListComponent}
 ]
 
 const routes: Routes = [
@@ -29,13 +39,24 @@ const routes: Routes = [
     UnauthorizedHeaderComponent,
     UnauthorizedNavBarComponent,
     LogInComponent,
-    RegisterComponent
+    RegisterComponent,
+    ScheduleComponent,
+    LinesGridComponent,
+    VehicleLocationComponent,
+    PriceListComponent
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+function newFunction(): string {
+  return "logIn";
+}
+
