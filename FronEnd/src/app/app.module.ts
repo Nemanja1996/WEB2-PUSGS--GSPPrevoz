@@ -17,9 +17,10 @@ import { ScheduleComponent } from './components/schedule/schedule.component';
 import { LinesGridComponent } from './components/lines-grid/lines-grid.component';
 import { VehicleLocationComponent } from './components/vehicle-location/vehicle-location.component';
 import { PriceListComponent } from './components/price-list/price-list.component';
+import { ScheduleHttpService } from './services/schedule/schedule.service';
 
 const childrenRoutes : Routes = [
-  {path: newFunction(), component: LogInComponent},
+  {path: "logIn", component: LogInComponent},
   {path: "register", component: RegisterComponent},
   {path: "schedule", component: ScheduleComponent},
   {path: "linesGrid", component: LinesGridComponent},
@@ -52,11 +53,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}, AuthService],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}, AuthService, ScheduleHttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-function newFunction(): string {
-  return "logIn";
-}
-
