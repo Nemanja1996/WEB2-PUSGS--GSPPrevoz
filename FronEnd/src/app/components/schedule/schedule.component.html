@@ -1,3 +1,26 @@
-<p>
-  Ovde ce biti rsapored voznjii za korisnika.
-</p>
+Odabir tipa reda voznje:<br>
+<select [(ngModel)]="selectedScheduleType" (change)="changeselectedScheduleType()">
+  <option *ngFor="let scheduleType of scheduleInfo.ScheduleTypes" [ngValue]="scheduleType">
+    {{scheduleType.Name}}
+  </option>
+</select>
+
+<br><br>
+
+Odabir tipa linije<br>
+<select [(ngModel)]="selectedLineType" (change)="changeselectedLineType()">
+  <option *ngFor="let lineType of scheduleInfo.LineTypes" [ngValue]="lineType">
+    {{lineType.Name}}
+  </option>
+</select>
+
+<br><br>
+
+Odabir linije<br>
+<select [(ngModel)]="selectedLine" [disabled]="selectedLineType.Id==undefined">
+  <option *ngFor="let line of filteredLines" [ngValue]="line">
+    {{line.Name}}
+  </option>
+</select>
+<br><br>
+<button (click)="getSchedule()" [disabled]="selectedLine.Id==undefined || selectedScheduleType.Id==undefined">Prikazi</button>

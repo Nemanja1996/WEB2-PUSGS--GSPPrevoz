@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { CatalogueHttpService } from 'src/app/services/catalogue/catalogue.service';
+import { CatalogueInfo } from 'src/app/models/CatalogueInfo';
+import { HttpBackend } from '@angular/common/http';
 
 @Component({
   selector: 'app-price-list',
@@ -7,9 +10,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PriceListComponent implements OnInit {
 
-  constructor() { }
+  catalogueInfo:CatalogueInfo
+
+  constructor(private http: CatalogueHttpService) { }
 
   ngOnInit() {
+    this.http.getAll().subscribe((catalogueInfo) => {
+      this.catalogueInfo = catalogueInfo;
+      console.log(catalogueInfo);
+      err => console.log(err);
+    });
   }
 
 }

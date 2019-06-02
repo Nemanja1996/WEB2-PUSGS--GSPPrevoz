@@ -18,6 +18,7 @@ import { LinesGridComponent } from './components/lines-grid/lines-grid.component
 import { VehicleLocationComponent } from './components/vehicle-location/vehicle-location.component';
 import { PriceListComponent } from './components/price-list/price-list.component';
 import { ScheduleHttpService } from './services/schedule/schedule.service';
+import { CatalogueHttpService } from './services/catalogue/catalogue.service';
 
 const childrenRoutes : Routes = [
   {path: "logIn", component: LogInComponent},
@@ -53,7 +54,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}, AuthService, ScheduleHttpService],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}, AuthService, ScheduleHttpService, CatalogueHttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
