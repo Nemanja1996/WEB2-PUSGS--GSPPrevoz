@@ -17,5 +17,7 @@ export class UnauthorizedHeaderComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  Register(){
+    console.log("registracija");
+  }
 }

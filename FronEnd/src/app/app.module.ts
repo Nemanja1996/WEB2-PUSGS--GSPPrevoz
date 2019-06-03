@@ -19,6 +19,10 @@ import { VehicleLocationComponent } from './components/vehicle-location/vehicle-
 import { PriceListComponent } from './components/price-list/price-list.component';
 import { ScheduleHttpService } from './services/schedule/schedule.service';
 import { CatalogueHttpService } from './services/catalogue/catalogue.service';
+import { DepartureHttpService } from './services/schedule/departure.service';
+import { AdminComponent } from './components/admin/admin.component';
+import { AdminHeaderComponent } from './components/admin-header/admin-header.component';
+import { AdminNavBarComponent } from './components/admin-nav-bar/admin-nav-bar.component';
 
 const childrenRoutes : Routes = [
   {path: "logIn", component: LogInComponent},
@@ -31,6 +35,7 @@ const childrenRoutes : Routes = [
 
 const routes: Routes = [
   {path: "unauthorizedUser", component: UnauthorizeUserComponent, children: childrenRoutes},
+  {path: "admin", component: AdminComponent},
   {path: "", redirectTo: "/unauthorizedUser", pathMatch: "full"}
 ]
 
@@ -45,7 +50,10 @@ const routes: Routes = [
     ScheduleComponent,
     LinesGridComponent,
     VehicleLocationComponent,
-    PriceListComponent
+    PriceListComponent,
+    AdminComponent,
+    AdminHeaderComponent,
+    AdminNavBarComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +62,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}, AuthService, ScheduleHttpService, CatalogueHttpService],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}, AuthService, ScheduleHttpService, CatalogueHttpService, DepartureHttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

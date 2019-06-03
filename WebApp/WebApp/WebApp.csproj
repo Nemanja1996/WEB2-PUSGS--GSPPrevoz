@@ -303,6 +303,10 @@
     <Compile Include="Migrations\201905291159480_CorrectionMigration.Designer.cs">
       <DependentUpon>201905291159480_CorrectionMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906031119292_changesOdDateTimeFormat.cs" />
+    <Compile Include="Migrations\201906031119292_changesOdDateTimeFormat.Designer.cs">
+      <DependentUpon>201906031119292_changesOdDateTimeFormat.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -477,6 +481,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905291159480_CorrectionMigration.resx">
       <DependentUpon>201905291159480_CorrectionMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906031119292_changesOdDateTimeFormat.resx">
+      <DependentUpon>201906031119292_changesOdDateTimeFormat.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

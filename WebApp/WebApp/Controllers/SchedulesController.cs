@@ -120,6 +120,14 @@ namespace WebApp.Controllers
             return Ok(s);
         }
 
+        [ResponseType(typeof(Schedule))]
+        [Route("api/Schedules/ScheduleLine/{lineId}/{scheduleTypeId}")]
+        public IHttpActionResult GetScheduleLine(int lineId, int scheduleTypeId)
+        {
+            Schedule s = db.Schedules.Find(x => x.LineId == lineId && x.ScheduleTypeId == scheduleTypeId).FirstOrDefault();
+            return Ok(s);
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

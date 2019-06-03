@@ -26,14 +26,11 @@ export class LogInComponent implements OnInit {
 
   login() {
     this.authService.login(this.loginForm.value).subscribe((data) => {
-
-        this.router.navigate(["unauthorizedUser", "register"]);
-        
-        if(this.authService.isLoggedIn){
-          console.log("jestee")
+        if(data === "admin"){
+          this.router.navigate(["admin"]);
         }
         else{
-          console.log("nijee")
+          this.router.navigate(["unauthorizedUser", "logIn"]);
         }
     });
   }

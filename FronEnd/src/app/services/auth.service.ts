@@ -16,8 +16,10 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   login(user: User): Observable<any> {
-    return this.http.post<any>(this.loginUrl, `username=`+ user.username +`&password=`+ user.password + `&grant_type=password`, { 'headers': { 'Content-type': 'x-www-form-urlencoded' } }).pipe(
-      map(res => {
+    return Observable.create((observable) => {
+      
+      this.http.post<any>(this.loginUrl, `username=`+ user.username +`&password=`+ user.password + `&grant_type=password`, { 'headers': { 'Content-type': 'x-www-form-urlencoded' } }).subscribe(
+      res => {
         console.log(res.access_token);
 
         let jwt = res.access_token;
@@ -37,10 +39,20 @@ export class AuthService {
         localStorage.setItem('role', role);
 
         this.isLoggedIn = true;
-      }),
 
-      catchError(this.handleError<any>('login'))
-    );
+        if(role === "Admin"){
+          observable.next('admin');
+
+          observable.complete();
+        }
+      },
+      err => {
+      observable.next('greska')
+      observable.complete();
+      }
+      )
+    }
+    )
   }
 
   logout(): void {

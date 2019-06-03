@@ -20,4 +20,8 @@ export class BaseHttpService<T>{
     getById(id : number):Observable<T>{
         return this.http.get<T>(this.baseUrl + this.specificUrl + `/${id}`)
     }
+
+    get(id1 : number, id2 : number):Observable<T>{
+        return this.http.get<T>(this.baseUrl + this.specificUrl + `/${id1}` + `/${id2}`)
+    }
 }

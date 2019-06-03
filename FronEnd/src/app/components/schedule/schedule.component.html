@@ -24,3 +24,8 @@ Odabir linije<br>
 </select>
 <br><br>
 <button (click)="getSchedule()" [disabled]="selectedLine.Id==undefined || selectedScheduleType.Id==undefined">Prikazi</button>
+
+<br><br>
+
+Polasci sa stanice:<br>
+{{schedule.Departure}}
