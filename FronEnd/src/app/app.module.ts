@@ -23,6 +23,7 @@ import { DepartureHttpService } from './services/schedule/departure.service';
 import { AdminComponent } from './components/admin/admin.component';
 import { AdminHeaderComponent } from './components/admin-header/admin-header.component';
 import { AdminNavBarComponent } from './components/admin-nav-bar/admin-nav-bar.component';
+import { AuthGuard } from './auth/auth.guard';
 
 const childrenRoutes : Routes = [
   {path: "logIn", component: LogInComponent},
@@ -35,7 +36,7 @@ const childrenRoutes : Routes = [
 
 const routes: Routes = [
   {path: "unauthorizedUser", component: UnauthorizeUserComponent, children: childrenRoutes},
-  {path: "admin", component: AdminComponent},
+  {path: "admin", component: AdminComponent, canActivate: [AuthGuard]},
   {path: "", redirectTo: "/unauthorizedUser", pathMatch: "full"}
 ]
 

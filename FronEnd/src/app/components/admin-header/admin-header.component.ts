@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-header',
@@ -7,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminHeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(public authService: AuthService, private router:Router) { }
 
   ngOnInit() {
   }
@@ -16,6 +18,7 @@ export class AdminHeaderComponent implements OnInit {
 
   }
   LogOut(){
-    
+    this.authService.logout();
+    this.router.navigate(["unauthorizedUser"]);
   }
 }
