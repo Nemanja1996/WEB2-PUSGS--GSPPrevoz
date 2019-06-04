@@ -9,5 +9,6 @@ namespace WebApp.Models.BindingModels
     {
         public List<TicketType> TicketTypes { get; set; }
         public List<PassengerType> PassengerTypes { get; set; }
+        public List<TicketPrice> TicketPrices { get; set; }
     }
 }

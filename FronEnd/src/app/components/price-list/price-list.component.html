@@ -1,18 +1,12 @@
 <table border="1px" solid #dddddd>
   <tr>
     <th></th>
-    <th>Vremenska</th>
-    <th>Dnevna</th>
-    <th>Mesecna</th>
-    <th>Godisnja</th>
+    <th *ngFor="let ticketType of catalogueInfo.TicketTypes">{{ticketType.Name}}</th>
   </tr>
-  <tr>
-    <th>Ucenik/Student</th>
-  </tr>
-  <tr>
-    <th>Penzioner</th>
-  </tr>
-  <tr>
-    <th>Regularni</th>
-  </tr>
+  <tr *ngFor="let pasengerType of catalogueInfo.PassengerTypes">
+      <th>{{pasengerType.Name}}</th>
+      <ng-container *ngFor="let price of catalogueInfo.TicketPrices">
+        <td *ngIf="pasengerType.Name === price.PassType">{{price.DiscountPrice}}</td>
+      </ng-container>
+    </tr>
   </table>
