@@ -24,6 +24,10 @@ import { AdminComponent } from './components/admin/admin.component';
 import { AdminHeaderComponent } from './components/admin-header/admin-header.component';
 import { AdminNavBarComponent } from './components/admin-nav-bar/admin-nav-bar.component';
 import { AuthGuard } from './auth/auth.guard';
+import { AdminScheduleComponent } from './components/admin-schedule/admin-schedule.component';
+import { AdminLinesGridComponent } from './components/admin-lines-grid/admin-lines-grid.component';
+import { AdminVehicleLocationComponent } from './components/admin-vehicle-location/admin-vehicle-location.component';
+import { AdminPricelistComponent } from './components/admin-pricelist/admin-pricelist.component';
 
 const childrenRoutes : Routes = [
   {path: "logIn", component: LogInComponent},
@@ -32,11 +36,21 @@ const childrenRoutes : Routes = [
   {path: "linesGrid", component: LinesGridComponent},
   {path: "vehicleLocation", component: VehicleLocationComponent},
   {path: "priceList", component: PriceListComponent}
+  
+]
+
+const childrenRoutesAdmin : Routes = [
+  {path: "login", component: LogInComponent},
+  {path: "schedule", component: AdminScheduleComponent},
+  {path: "linesGrid", component: AdminLinesGridComponent},
+  {path: "vehicleLocation", component: AdminVehicleLocationComponent},
+  {path: "priceList", component: AdminPricelistComponent}
+  
 ]
 
 const routes: Routes = [
   {path: "unauthorizedUser", component: UnauthorizeUserComponent, children: childrenRoutes},
-  {path: "admin", component: AdminComponent, canActivate: [AuthGuard]},
+  {path: "admin", component: AdminComponent, canActivate: [AuthGuard], children: childrenRoutesAdmin},
   {path: "", redirectTo: "/unauthorizedUser", pathMatch: "full"}
 ]
 
@@ -54,7 +68,11 @@ const routes: Routes = [
     PriceListComponent,
     AdminComponent,
     AdminHeaderComponent,
-    AdminNavBarComponent
+    AdminNavBarComponent,
+    AdminScheduleComponent,
+    AdminLinesGridComponent,
+    AdminVehicleLocationComponent,
+    AdminPricelistComponent
   ],
   imports: [
     BrowserModule,
