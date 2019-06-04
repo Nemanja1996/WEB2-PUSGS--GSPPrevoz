@@ -307,11 +307,16 @@
     <Compile Include="Migrations\201906031119292_changesOdDateTimeFormat.Designer.cs">
       <DependentUpon>201906031119292_changesOdDateTimeFormat.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906040722170_updateTicketClass.cs" />
+    <Compile Include="Migrations\201906040722170_updateTicketClass.Designer.cs">
+      <DependentUpon>201906040722170_updateTicketClass.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\BindingModels\CatalogueInfoBindingModel.cs" />
+    <Compile Include="Models\BindingModels\PriceListBindingModel.cs" />
     <Compile Include="Models\BindingModels\ScheduleInfoBindingModel.cs" />
     <Compile Include="Models\Catalogue.cs" />
     <Compile Include="Models\CatalogueHistory.cs" />
@@ -484,6 +489,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906031119292_changesOdDateTimeFormat.resx">
       <DependentUpon>201906031119292_changesOdDateTimeFormat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906040722170_updateTicketClass.resx">
+      <DependentUpon>201906040722170_updateTicketClass.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

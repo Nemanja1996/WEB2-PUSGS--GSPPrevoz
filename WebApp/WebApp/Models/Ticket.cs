@@ -15,7 +15,6 @@ namespace WebApp.Models
         [Required]
         public int CatalogueHistoryID { get; set; }
         public CatalogueHistory CatalogueHistory { get; set; }
-        [Required]
         public string ApplicationUserID { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
         [Required]
