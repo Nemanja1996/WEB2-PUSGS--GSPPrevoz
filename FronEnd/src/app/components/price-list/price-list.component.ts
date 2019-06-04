@@ -10,7 +10,7 @@ import { HttpBackend } from '@angular/common/http';
 })
 export class PriceListComponent implements OnInit {
 
-  catalogueInfo:CatalogueInfo
+  catalogueInfo:CatalogueInfo = new CatalogueInfo;
 
   constructor(private http: CatalogueHttpService) { }
 

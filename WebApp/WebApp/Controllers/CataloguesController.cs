@@ -115,7 +115,19 @@ namespace WebApp.Controllers
         {
             List<TicketType> ticketTypes = db.TicketTypes.GetAll().ToList();
             List<PassengerType> passengertypes = db.PassengerTypes.GetAll().ToList();
-            CatalogueInfoBindingModel c = new CatalogueInfoBindingModel() { TicketTypes = ticketTypes, PassengerTypes = passengertypes};
+            Catalogue catalogue = db.Catalogues.Find(x => x.ValidFrom < DateTime.Now && x.ValidTo > DateTime.Now).FirstOrDefault();
+            List<CatalogueHistory> cataloguesHistories = db.CatalogueHistory.Find(x => x.CatalogueID == catalogue.Id).ToList();
+
+            List<TicketPrice> ticketPrices = new List<TicketPrice>(4);
+            foreach (var item in cataloguesHistories)
+            {
+                foreach (var item1 in passengertypes)
+                {
+                    ticketPrices.Add(new TicketPrice() { OriginalPrice = item.TicketPrice, DiscountPrice = item.TicketPrice - item.TicketPrice * (item1.Discount / 100), PassType = item1.Name});
+                }
+            }
+
+            CatalogueInfoBindingModel c = new CatalogueInfoBindingModel() { TicketTypes = ticketTypes, PassengerTypes = passengertypes, TicketPrices = ticketPrices};
 
             return Ok(c);
         }
