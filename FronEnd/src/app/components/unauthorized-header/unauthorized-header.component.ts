@@ -18,6 +18,6 @@ export class UnauthorizedHeaderComponent implements OnInit {
   ngOnInit() {
   }
   Register(){
-    console.log("registracija");
+    this.router.navigate(['unauthorizedUser', 'register']);
   }
 }
