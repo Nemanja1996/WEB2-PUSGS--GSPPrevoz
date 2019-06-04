@@ -26,6 +26,10 @@ export class UnauthorizedNavBarComponent implements OnInit {
     this.router.navigate(["unauthorizedUser", "priceList"])
   }
 
+  buyTicket(){
+    this.router.navigate(["unauthorizedUser", "buyTicket"])
+  }
+
   ngOnInit() {
   }
 

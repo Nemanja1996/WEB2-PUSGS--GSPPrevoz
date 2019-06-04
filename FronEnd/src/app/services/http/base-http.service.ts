@@ -24,4 +24,8 @@ export class BaseHttpService<T>{
     get(id1 : number, id2 : number):Observable<T>{
         return this.http.get<T>(this.baseUrl + this.specificUrl + `/${id1}` + `/${id2}`)
     }
+
+    post(parms: T):Observable<T>{
+        return this.http.post<T>(this.baseUrl + this.specificUrl, parms);
+    }
 }

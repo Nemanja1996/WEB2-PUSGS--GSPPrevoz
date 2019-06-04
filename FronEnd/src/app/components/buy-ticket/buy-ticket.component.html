@@ -1,0 +1,22 @@
+<div class="container">
+    <table class="table table-striped" style="width: 70%;">
+      <tbody>
+        <tr>
+          <td colspan="1">
+            <form [formGroup]="buyForm" (ngSubmit)="buyTicket()" class="well form-horizontal">
+                <fieldset>
+                  <div class="col-md-8 inputGroupContainer">
+                    <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span><input
+                        id="email" formControlName="email" style="width: 40%;" class="form-control" required="true" type="text">
+                      </div>
+                      <br>
+                      <button type="submit" [disabled]="!buyForm.valid" class="btn btn-secondary">Kupi kartu</button>
+                    </div>
+                </fieldset>
+            </form>
+          </td>
+        </tr>
+      </tbody>
+      {{message}}
+    </table>
+</div>

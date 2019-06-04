@@ -28,6 +28,8 @@ import { AdminScheduleComponent } from './components/admin-schedule/admin-schedu
 import { AdminLinesGridComponent } from './components/admin-lines-grid/admin-lines-grid.component';
 import { AdminVehicleLocationComponent } from './components/admin-vehicle-location/admin-vehicle-location.component';
 import { AdminPricelistComponent } from './components/admin-pricelist/admin-pricelist.component';
+import { BuyTicketComponent } from './components/buy-ticket/buy-ticket.component';
+import { TimeTicketHttpService } from './services/ticket/timeTicket.service';
 
 const childrenRoutes : Routes = [
   {path: "logIn", component: LogInComponent},
@@ -35,8 +37,8 @@ const childrenRoutes : Routes = [
   {path: "schedule", component: ScheduleComponent},
   {path: "linesGrid", component: LinesGridComponent},
   {path: "vehicleLocation", component: VehicleLocationComponent},
-  {path: "priceList", component: PriceListComponent}
-  
+  {path: "priceList", component: PriceListComponent},
+  {path: "buyTicket", component: BuyTicketComponent}
 ]
 
 const childrenRoutesAdmin : Routes = [
@@ -72,7 +74,8 @@ const routes: Routes = [
     AdminScheduleComponent,
     AdminLinesGridComponent,
     AdminVehicleLocationComponent,
-    AdminPricelistComponent
+    AdminPricelistComponent,
+    BuyTicketComponent
   ],
   imports: [
     BrowserModule,
@@ -81,7 +84,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}, AuthService, ScheduleHttpService, CatalogueHttpService, DepartureHttpService],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}, AuthService, ScheduleHttpService, CatalogueHttpService, DepartureHttpService, TimeTicketHttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

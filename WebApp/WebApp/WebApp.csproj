@@ -316,6 +316,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\BindingModels\CatalogueInfoBindingModel.cs" />
+    <Compile Include="Models\BindingModels\Email.cs" />
     <Compile Include="Models\BindingModels\TicketPrice.cs" />
     <Compile Include="Models\BindingModels\ScheduleInfoBindingModel.cs" />
     <Compile Include="Models\Catalogue.cs" />
