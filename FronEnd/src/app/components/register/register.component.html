@@ -1,6 +1,7 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 
 <h3>Registracija</h3>
 <!-- <form [formGroup]="registerForm" (ngSubmit)="register()">
@@ -31,7 +32,7 @@
 </form> -->
 
 
-
+<div class="container">
     <table class="table table-striped" style="width: 60%;">
         <tbody>
             <tr>
@@ -50,8 +51,8 @@
                                 <label class="col-md-4 control-label">Prezime</label>
                                 <div class="col-md-8 inputGroupContainer">
                                     <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span><input
-                                            id="firstName" name="firstName" placeholder="Ime" class="form-control"
-                                            required="true" type="text" formControlName="firstName"></div>
+                                            id="firstName" name="firstName" placeholder="Prezime" class="form-control"
+                                            required="true" type="text" formControlName="lastName"></div>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -69,24 +70,27 @@
                                 <div class="col-md-8 inputGroupContainer">
                                     <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span><input
                                             id="email" name="email" placeholder="Email" class="form-control" required="true"
-                                            type="text" formControlName="email"></div>
+                                            type="email" formControlName="email"></div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Lozinka</label>
                                 <div class="col-md-8 inputGroupContainer">
-                                    <div class="input-group"><span class="input-group-addon"><i class="glyphicon-glyphicon-lock"></i></span><input
-                                            id="password" name="email" placeholder="Email" class="form-control"
+                                    <div class="input-group"><span class="input-group-addon"><i class="fa fa-lock fa-lg"></i></span><input
+                                            id="password" name="email" placeholder="Lozinka" class="form-control"
                                             required="true" type="password" formControlName="password"></div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-4 control-label">Potvrdi lozinku</label>
                                 <div class="col-md-8 inputGroupContainer">
-                                    <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span><input
-                                            id="passwordConfirm" name="passwordConfirm" placeholder="Email" class="form-control"
-                                            required="true" type="password" formControlName="passwordConfirm"></div>
+                                    <div class="input-group"><span class="input-group-addon"><i class="fa fa-lock fa-lg"></i></span><input
+                                            id="passwordConfirm" name="passwordConfirm" placeholder="Potvrdi lozinku" class="form-control"
+                                            required="true" type="password" formControlName="confirmPassword"></div>
                                 </div>
+                            </div>
+                            <div class="error" *ngIf="registerForm.get('confirmPassword').errors && registerForm.get('confirmPassword').errors.ConfirmPassword">
+                                    Lozinke se ne poklapaju.
                             </div>
                         </fieldset>
                         <button type="submit"  class="btn btn-secondary" [disabled]="!registerForm.valid">Register</button>
@@ -95,3 +99,4 @@
             </tr>
         </tbody>
     </table>
+</div>

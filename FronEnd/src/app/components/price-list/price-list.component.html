@@ -1,12 +1,16 @@
-<table border="1px" solid #dddddd>
+<table class="table" style="width: 60%;" border="1px" solid #dddddd>
+  <thead class="thead-dark">
   <tr>
-    <th></th>
-    <th *ngFor="let ticketType of catalogueInfo.TicketTypes">{{ticketType.Name}}</th>
+    <th scope="col"></th>
+    <th scope="col" *ngFor="let ticketType of catalogueInfo.TicketTypes">{{ticketType.Name}}</th>
   </tr>
+</thead>
+<tbody>
   <tr *ngFor="let pasengerType of catalogueInfo.PassengerTypes">
-      <th>{{pasengerType.Name}}</th>
+      <th scope="row">{{pasengerType.Name}}</th>
       <ng-container *ngFor="let price of catalogueInfo.TicketPrices">
         <td *ngIf="pasengerType.Name === price.PassType">{{price.DiscountPrice}}</td>
       </ng-container>
     </tr>
+  </tbody>
   </table>
