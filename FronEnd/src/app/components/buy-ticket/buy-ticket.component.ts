@@ -24,9 +24,16 @@ export class BuyTicketComponent implements OnInit {
 
   buyTicket(){
     this.email.Value = this.buyForm.value.email;
-    this.ticketService.post(this.email).subscribe();
-    this.buyForm.reset();
-    this.message = "Hvala sto ste kupili kartu, sve informacije poslate su na mail."
+    this.ticketService.post(this.email).subscribe((ticketData) => {
+      if (ticketData) {
+        this.buyForm.reset();
+        this.message = "Hvala sto ste kupili kartu, sve informacije poslate su na mail."
+      }
+      else {
+        err => console.log("Greska pri kupovini karte")
+        this.message = "Greska pri kupovini karte"
+      }
+    });
   }
 
 }
