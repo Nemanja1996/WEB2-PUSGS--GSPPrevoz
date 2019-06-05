@@ -1,23 +1,23 @@
 Odabir tipa reda voznje:<br>
-<select [(ngModel)]="selectedScheduleType" (change)="changeselectedScheduleType()">
+<select class="form-control" style="width: 20%;" [(ngModel)]="selectedScheduleType" (change)="changeselectedScheduleType()">
   <option *ngFor="let scheduleType of scheduleInfo.ScheduleTypes" [ngValue]="scheduleType">
     {{scheduleType.Name}}
   </option>
 </select>
 
-<br><br>
+<br>
 
 Odabir tipa linije<br>
-<select [(ngModel)]="selectedLineType" (change)="changeselectedLineType()">
+<select class="form-control" style="width: 20%;" [(ngModel)]="selectedLineType" (change)="changeselectedLineType()">
   <option *ngFor="let lineType of scheduleInfo.LineTypes" [ngValue]="lineType">
     {{lineType.Name}}
   </option>
 </select>
 
-<br><br>
+<br>
 
 Odabir linije<br>
-<select [(ngModel)]="selectedLine" [disabled]="selectedLineType.Id==undefined">
+<select class="form-control" style="width: 20%;" class="form-control" [(ngModel)]="selectedLine" [disabled]="selectedLineType.Id==undefined">
   <option *ngFor="let line of filteredLines" [ngValue]="line">
     {{line.Name}}
   </option>
@@ -25,10 +25,11 @@ Odabir linije<br>
 <br><br>
 Polasci: <br>
 <input type="text" [(ngModel)]="departures">
-<br><br>
+<br>
+<hr>
 
-<button (click)="addSchedule()" [disabled]="selectedLine.Id==undefined || selectedScheduleType.Id==undefined || departures==='' || departures===undefined">Dodaj</button>
+<button class="btn btn-secondary" (click)="addSchedule()" [disabled]="selectedLine.Id==undefined || selectedScheduleType.Id==undefined || departures==='' || departures===undefined">Dodaj</button>
 &nbsp;
-<button (click)="redirectSchedule()">Otkazi</button>
+<button class="btn btn-secondary" (click)="redirectSchedule()">Otkazi</button>
 <br>
 {{message}}
