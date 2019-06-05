@@ -3,44 +3,17 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 
-<h3>Registracija</h3>
-<!-- <form [formGroup]="registerForm" (ngSubmit)="register()">
-    <label>
-        Ime: <input type="text" formControlName="firstName" required>
-    </label>
-    <br>
-    <label>
-        Prezime: <input type="text" formControlName="lastName" required>
-    </label>
-    <br>
-    <label>
-        Email: <input type="email" formControlName="email" required>
-    </label>
-    <br>
-    <label>
-        Lozinka: <input type="password" formControlName="password" required>
-    </label>
-    <br>
-    <label>
-        Potvrdi lozinku: <input type="password" formControlName="passwordConfirm" required>
-    </label>
-    <br>
-    <label>
-        Adresa: <input type="text" formControlName="address" required>
-    </label>
-
-</form> -->
-
 
 <div class="container">
-    <table class="table table-striped" style="width: 60%;">
-        <tbody>
-            <tr>
-                <td colspan="1">
-                    <form [formGroup]="registerForm" (ngSubmit)="register()" class="well form-horizontal">
-                        <fieldset>
-                            <div class="form-group">
-                                <label class="col-md-4 control-label">Ime</label>
+    <table class="table table-striped" style="width: 40%;">
+            <tbody>
+                <tr>
+                    <td colspan="1">
+                        <h3>Registracija</h3>
+                        <form [formGroup]="registerForm" (ngSubmit)="register()" class="well form-horizontal">
+                            <fieldset>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label">Ime</label>
                                 <div class="col-md-8 inputGroupContainer">
                                     <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span><input
                                             id="firstName" name="fullName" placeholder="Ime" class="form-control"
@@ -93,7 +66,7 @@
                                     Lozinke se ne poklapaju.
                             </div>
                         </fieldset>
-                        <button type="submit"  class="btn btn-secondary" [disabled]="!registerForm.valid">Register</button>
+                        <button type="submit"  class="btn btn-secondary" [disabled]="!registerForm.valid">Registruj</button>
                     </form>
                 </td>
             </tr>

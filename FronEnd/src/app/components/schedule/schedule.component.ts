@@ -24,7 +24,7 @@ export class ScheduleComponent implements OnInit {
 
   ngOnInit() {
     this.http.getAll().subscribe((scheduleInfo) => {
-      this.scheduleInfo = scheduleInfo; 
+        this.scheduleInfo = scheduleInfo;
       console.log(scheduleInfo);
       err => console.log(err);
     });
@@ -35,6 +35,7 @@ export class ScheduleComponent implements OnInit {
   }
 
   changeselectedLineType(){
+    this.selectedLine.Id = undefined;
     this.filteredLines.splice(0);
     this.scheduleInfo.Lines.forEach(element => {
       if(element.LineTypeId == this.selectedLineType.Id){
@@ -45,7 +46,12 @@ export class ScheduleComponent implements OnInit {
 
   getSchedule(){
     this.httpDeparture.get(this.selectedLine.Id, this.selectedScheduleType.Id).subscribe((schedule)=>{
-      this.schedule = schedule;
+      if(schedule != null){
+        this.schedule = schedule;
+      }
+      else{
+        this.schedule.Departure = "";
+      }
       console.log(schedule);
       err => console.log(err);
     });

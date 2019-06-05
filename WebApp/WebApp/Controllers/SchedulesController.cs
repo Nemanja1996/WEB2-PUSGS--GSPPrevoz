@@ -79,18 +79,23 @@ namespace WebApp.Controllers
         }
 
         // POST: api/Schedules
-        [ResponseType(typeof(Schedule))]
+        [ResponseType(typeof(bool))]
         public IHttpActionResult PostSchedule(Schedule schedule)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-
-            db.Schedules.Add(schedule);
-            db.Complete();
-
-            return CreatedAtRoute("DefaultApi", new { id = schedule.Id }, schedule);
+            Schedule sch = db.Schedules.Find(x => x.LineId == schedule.LineId && x.ScheduleTypeId == schedule.ScheduleTypeId).FirstOrDefault();
+            if (sch == null) {
+                db.Schedules.Add(schedule);
+                db.Complete();
+                return Ok(true);
+            }
+            else
+            {
+                return Ok(false);
+            }
         }
 
         // DELETE: api/Schedules/5

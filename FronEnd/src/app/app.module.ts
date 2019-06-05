@@ -17,7 +17,7 @@ import { ScheduleComponent } from './components/schedule/schedule.component';
 import { LinesGridComponent } from './components/lines-grid/lines-grid.component';
 import { VehicleLocationComponent } from './components/vehicle-location/vehicle-location.component';
 import { PriceListComponent } from './components/price-list/price-list.component';
-import { ScheduleHttpService } from './services/schedule/schedule.service';
+import { ScheduleHttpService, AddScheduleHttpService } from './services/schedule/schedule.service';
 import { CatalogueHttpService } from './services/catalogue/catalogue.service';
 import { DepartureHttpService } from './services/schedule/departure.service';
 import { AdminComponent } from './components/admin/admin.component';
@@ -30,6 +30,9 @@ import { AdminVehicleLocationComponent } from './components/admin-vehicle-locati
 import { AdminPricelistComponent } from './components/admin-pricelist/admin-pricelist.component';
 import { BuyTicketComponent } from './components/buy-ticket/buy-ticket.component';
 import { TimeTicketHttpService } from './services/ticket/timeTicket.service';
+import { AddScheduleComponent } from './components/add-schedule/add-schedule.component';
+import { DeleteScheduleComponent } from './components/delete-schedule/delete-schedule.component';
+import { ChangeScheduleComponent } from './components/change-schedule/change-schedule.component';
 
 const childrenRoutes : Routes = [
   {path: "logIn", component: LogInComponent},
@@ -46,7 +49,10 @@ const childrenRoutesAdmin : Routes = [
   {path: "schedule", component: AdminScheduleComponent},
   {path: "linesGrid", component: AdminLinesGridComponent},
   {path: "vehicleLocation", component: AdminVehicleLocationComponent},
-  {path: "priceList", component: AdminPricelistComponent}
+  {path: "priceList", component: AdminPricelistComponent},
+  {path: "deleteSchedule", component: DeleteScheduleComponent},
+  {path: "addSchedule", component: AddScheduleComponent},
+  {path: "changeSchedule", component: ChangeScheduleComponent}
   
 ]
 
@@ -75,7 +81,10 @@ const routes: Routes = [
     AdminLinesGridComponent,
     AdminVehicleLocationComponent,
     AdminPricelistComponent,
-    BuyTicketComponent
+    BuyTicketComponent,
+    AddScheduleComponent,
+    DeleteScheduleComponent,
+    ChangeScheduleComponent
   ],
   imports: [
     BrowserModule,
@@ -84,7 +93,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}, AuthService, ScheduleHttpService, CatalogueHttpService, DepartureHttpService, TimeTicketHttpService],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}, AuthService, ScheduleHttpService, CatalogueHttpService, DepartureHttpService, TimeTicketHttpService, AddScheduleHttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -6,6 +6,8 @@ import { ScheduleType } from 'src/app/models/ScheduleType';
 import { Line } from 'src/app/models/Line';
 import { DepartureHttpService } from 'src/app/services/schedule/departure.service';
 import { Schedule } from 'src/app/models/Schedule';
+import { Router } from '@angular/router';
+import { routerNgProbeToken } from '@angular/router/src/router_module';
 
 @Component({
   selector: 'app-admin-schedule',
@@ -20,7 +22,7 @@ export class AdminScheduleComponent implements OnInit {
   filteredLines: Line[] = [];
   schedule: Schedule = new Schedule();
 
-  constructor(private http: ScheduleHttpService, private httpDeparture: DepartureHttpService) { }
+  constructor(private http: ScheduleHttpService, private httpDeparture: DepartureHttpService, private router: Router) { }
 
   ngOnInit() {
     this.http.getAll().subscribe((scheduleInfo) => {
@@ -35,6 +37,7 @@ export class AdminScheduleComponent implements OnInit {
   }
 
   changeselectedLineType(){
+    this.selectedLine.Id = undefined;
     this.filteredLines.splice(0);
     this.scheduleInfo.Lines.forEach(element => {
       if(element.LineTypeId == this.selectedLineType.Id){
@@ -45,9 +48,24 @@ export class AdminScheduleComponent implements OnInit {
 
   getSchedule(){
     this.httpDeparture.get(this.selectedLine.Id, this.selectedScheduleType.Id).subscribe((schedule)=>{
-      this.schedule = schedule;
+      if(schedule != null){
+        this.schedule = schedule;
+      }
+      else{
+        this.schedule.Departure = "";
+      }
       console.log(schedule);
       err => console.log(err);
     });
+  }
+
+  addSchedule(){
+    this.router.navigate(["admin", "addSchedule"]);
+  }
+  deleteSchedule(){
+    this.router.navigate(["admin", "deleteSchedule"]);
+  }
+  changeSchedule(){
+    this.router.navigate(["admin", "changeSchedule"]);
   }
 }

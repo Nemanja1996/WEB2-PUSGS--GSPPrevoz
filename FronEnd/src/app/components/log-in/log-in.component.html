@@ -1,25 +1,9 @@
-<!-- <form [formGroup]="loginForm" (ngSubmit)="login()">
-  <label>
-    Username:
-    <input type="text" formControlName="username" required>
-  </label>
-
-  <label>
-    Password:
-    <input type="password" formControlName="password" required>
-  </label>
-
-  <button type="submit" [disabled]="!loginForm.valid" *ngIf="!authService.isLoggedIn">Login</button>
-  <button (click)="logout()" *ngIf="authService.isLoggedIn">Logout</button>
-</form>
-<h1>Ako nema profil onda <button (click)="Register()">Registracija</button></h1> -->
-
-<h3>Prijava</h3>
 <div class="container">
   <table class="table table-striped" style="width: 40%;">
-    <tbody>
-      <tr>
-        <td colspan="1">
+      <tbody>
+        <tr>
+          <td colspan="1">
+              <h3>Prijava</h3>
           <form [formGroup]="loginForm" (ngSubmit)="login()" class="well form-horizontal">
             <fieldset>
               <div class="form-group">
@@ -41,11 +25,12 @@
             </fieldset>
             <button type="submit"  class="btn btn-secondary" [disabled]="!loginForm.valid" *ngIf="!authService.isLoggedIn">Login</button>
             <button (click)="logout()" *ngIf="authService.isLoggedIn">Logout</button>
+            &nbsp;
+            <button (click)="Register()" class="btn btn-secondary">Registracija</button>
             <!-- <a (click)="Register()">Register</a> -->
           </form>
         </td>
       </tr>
     </tbody>
   </table>
-  <button (click)="Register()" class="btn btn-secondary">Registracija</button>
 </div>

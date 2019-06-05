@@ -23,11 +23,12 @@ Odabir linije<br>
   </option>
 </select>
 <br><br>
-<button (click)="getSchedule()" [disabled]="selectedLine.Id==undefined || selectedScheduleType.Id==undefined">Prikazi</button>
-<button (click)="addSchedule()">Dodaj R. voznje</button>
-<button (click)="deleteSchedule()">Obrisi R. voznje</button>
-<button (click)="changeSchedule()">Izmeni R. voznje</button>
+Polasci: <br>
+<input type="text" [(ngModel)]="departures">
 <br><br>
 
-Polasci sa stanice:<br>
-{{schedule.Departure}}
+<button (click)="addSchedule()" [disabled]="selectedLine.Id==undefined || selectedScheduleType.Id==undefined || departures==='' || departures===undefined">Dodaj</button>
+&nbsp;
+<button (click)="redirectSchedule()">Otkazi</button>
+<br>
+{{message}}
