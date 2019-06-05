@@ -17,7 +17,7 @@ Odabir tipa linije<br>
 <br><br>
 
 Odabir linije<br>
-<select [(ngModel)]="selectedLine" [disabled]="selectedLineType.Id==undefined">
+<select [(ngModel)]="selectedLine" [disabled]="selectedLineType==null">
   <option *ngFor="let line of filteredLines" [ngValue]="line">
     {{line.Name}}
   </option>
@@ -27,7 +27,7 @@ Polasci: <br>
 <input type="text" [(ngModel)]="departures">
 <br><br>
 
-<button (click)="addSchedule()" [disabled]="selectedLine.Id==undefined || selectedScheduleType.Id==undefined || departures==='' || departures===undefined">Dodaj</button>
+<button (click)="addSchedule()" [disabled]="selectedLine==null || selectedScheduleType==null || departures==='' || departures===undefined">Dodaj</button>
 &nbsp;
 <button (click)="redirectSchedule()">Otkazi</button>
 <br>

@@ -16,9 +16,9 @@ import { routerNgProbeToken } from '@angular/router/src/router_module';
 })
 export class AdminScheduleComponent implements OnInit {
   scheduleInfo:ScheduleInfo = new ScheduleInfo();
-  selectedScheduleType: ScheduleType = new ScheduleType();
+  selectedScheduleType: ScheduleType = null;
   selectedLineType: LineType = new LineType();
-  selectedLine: Line = new Line();
+  selectedLine: Line = null;
   filteredLines: Line[] = [];
   schedule: Schedule = new Schedule();
 
@@ -37,7 +37,7 @@ export class AdminScheduleComponent implements OnInit {
   }
 
   changeselectedLineType(){
-    this.selectedLine.Id = undefined;
+    this.selectedLine = null;
     this.filteredLines.splice(0);
     this.scheduleInfo.Lines.forEach(element => {
       if(element.LineTypeId == this.selectedLineType.Id){

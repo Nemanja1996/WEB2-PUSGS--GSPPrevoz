@@ -25,7 +25,7 @@ Odabir linije<br>
 <hr>
 <br>
 <p>
-<button class="btn btn-secondary" (click)="getSchedule()" [disabled]="selectedLine.Id==undefined || selectedScheduleType.Id==undefined">Prikazi</button> 
+<button class="btn btn-secondary" (click)="getSchedule()" [disabled]="selectedLine==null || selectedScheduleType==null">Prikazi</button> 
 </p>
 <p>Dodatne opcije</p>
 <button class="btn btn-secondary" (click)="addSchedule()">Dodaj R. voznje</button>

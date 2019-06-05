@@ -16,9 +16,9 @@ import { DepartureHttpService } from 'src/app/services/schedule/departure.servic
 export class ChangeScheduleComponent implements OnInit {
 
   scheduleInfo:ScheduleInfo = new ScheduleInfo();
-  selectedScheduleType: ScheduleType = new ScheduleType();
-  selectedLineType: LineType = new LineType();
-  selectedLine: Line = new Line();
+  selectedScheduleType: ScheduleType = null;
+  selectedLineType: LineType = null;
+  selectedLine: Line = null;
   filteredLines: Line[] = [];
   schedule: Schedule = new Schedule();
   departures: string;
@@ -41,7 +41,7 @@ export class ChangeScheduleComponent implements OnInit {
   }
 
   changeselectedLineType(){
-    this.selectedLine.Id = undefined;
+    this.selectedLine = null;
     this.filteredLines.splice(0);
     this.scheduleInfo.Lines.forEach(element => {
       if(element.LineTypeId == this.selectedLineType.Id){

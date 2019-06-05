@@ -17,13 +17,13 @@ Odabir tipa linije<br>
 <br><br>
 
 Odabir linije<br>
-<select [(ngModel)]="selectedLine" (change)="changeLine()" [disabled]="selectedLineType.Id==undefined">
+<select [(ngModel)]="selectedLine" (change)="changeLine()" [disabled]="selectedLineType==null">
   <option *ngFor="let line of filteredLines" [ngValue]="line">
     {{line.Name}}
   </option>
 </select>
 <br><br>
-<button (click)="getSchedule()" [disabled]="selectedLine.Id==undefined || selectedScheduleType.Id==undefined">Prikazi</button>
+<button (click)="getSchedule()" [disabled]="selectedLine==null || selectedScheduleType==null">Prikazi</button>
 <br><br>
 Polasci: <br>
 <textarea [(ngModel)]="departures"></textarea>
