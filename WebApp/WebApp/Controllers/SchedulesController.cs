@@ -44,7 +44,7 @@ namespace WebApp.Controllers
         }
 
         // PUT: api/Schedules/5
-        [ResponseType(typeof(void))]
+        [ResponseType(typeof(bool))]
         public IHttpActionResult PutSchedule(int id, Schedule schedule)
         {
             if (!ModelState.IsValid)
@@ -54,7 +54,7 @@ namespace WebApp.Controllers
 
             if (id != schedule.Id)
             {
-                return BadRequest();
+                return Ok(false);
             }
 
             db.Schedules.Update(schedule);
@@ -67,15 +67,15 @@ namespace WebApp.Controllers
             {
                 if (!ScheduleExists(id))
                 {
-                    return NotFound();
+                    return Ok(false);
                 }
                 else
                 {
-                    throw;
+                    return Ok(false);
                 }
             }
 
-            return StatusCode(HttpStatusCode.NoContent);
+            return Ok(true);
         }
 
         // POST: api/Schedules
