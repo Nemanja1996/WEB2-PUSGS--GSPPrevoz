@@ -1,3 +1,35 @@
-<p>
-  delete-schedule works!
-</p>
+Odabir tipa reda voznje:<br>
+<select class="form-control" style="width: 20%;" [(ngModel)]="selectedScheduleType" (change)="changeselectedScheduleType()">
+  <option *ngFor="let scheduleType of scheduleInfo.ScheduleTypes" [ngValue]="scheduleType">
+    {{scheduleType.Name}}
+  </option>
+</select>
+
+<br>
+
+Odabir tipa linije<br>
+<select class="form-control" style="width: 20%;" [(ngModel)]="selectedLineType" (change)="changeselectedLineType()">
+  <option *ngFor="let lineType of scheduleInfo.LineTypes" [ngValue]="lineType">
+    {{lineType.Name}}
+  </option>
+</select>
+
+<br>
+
+Odabir linije<br>
+<select class="form-control" style="width: 20%;" [(ngModel)]="selectedLine" [disabled]="selectedLineType==null">
+  <option *ngFor="let line of filteredLines" [ngValue]="line">
+    {{line.Name}}
+  </option>
+</select>
+<br><br>
+Polasci: <br>
+<textarea readonly="true" class="md-textarea form-control" rows="3" style="width: 40%;" [(ngModel)]="departures"></textarea>
+<br>
+<hr>
+
+<button class="btn btn-secondary" (click)="deleteSchedule()" [disabled]="selectedLine==null || selectedScheduleType==null || departures==='' || departures===undefined">Obrisi</button>
+&nbsp;
+<button class="btn btn-secondary" (click)="redirectSchedule()">Otkazi</button>
+<br>
+{{message}}

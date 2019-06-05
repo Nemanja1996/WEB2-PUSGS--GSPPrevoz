@@ -31,4 +31,7 @@ export class BaseHttpService<T>{
     put(id: number, data: T):Observable<T>{
         return this.http.put<T>(this.baseUrl + this.specificUrl + `/${id}`, data);
     }
+    delete(id: number):Observable<T>{
+        return this.http.delete<T>(this.baseUrl + this.specificUrl + `/${id}`);
+    }
 }

@@ -99,19 +99,19 @@ namespace WebApp.Controllers
         }
 
         // DELETE: api/Schedules/5
-        [ResponseType(typeof(Schedule))]
+        [ResponseType(typeof(bool))]
         public IHttpActionResult DeleteSchedule(int id)
         {
             Schedule schedule = db.Schedules.Get(id);
             if (schedule == null)
             {
-                return NotFound();
+                return Ok(false);
             }
 
             db.Schedules.Remove(schedule);
             db.Complete();
 
-            return Ok(schedule);
+            return Ok(true);
         }
         [ResponseType(typeof(ScheduleInfoBindingModel))]
         [Route("api/Schedules/ScheduleInfo")]
