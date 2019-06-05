@@ -33,6 +33,7 @@ import { TimeTicketHttpService } from './services/ticket/timeTicket.service';
 import { AddScheduleComponent } from './components/add-schedule/add-schedule.component';
 import { DeleteScheduleComponent } from './components/delete-schedule/delete-schedule.component';
 import { ChangeScheduleComponent } from './components/change-schedule/change-schedule.component';
+import { AdminProfileComponent } from './components/admin-profile/admin-profile.component';
 
 const childrenRoutes : Routes = [
   {path: "logIn", component: LogInComponent},
@@ -52,7 +53,8 @@ const childrenRoutesAdmin : Routes = [
   {path: "priceList", component: AdminPricelistComponent},
   {path: "deleteSchedule", component: DeleteScheduleComponent},
   {path: "addSchedule", component: AddScheduleComponent},
-  {path: "changeSchedule", component: ChangeScheduleComponent}
+  {path: "changeSchedule", component: ChangeScheduleComponent},
+  {path: "profile", component: AdminProfileComponent}
   
 ]
 
@@ -84,7 +86,8 @@ const routes: Routes = [
     BuyTicketComponent,
     AddScheduleComponent,
     DeleteScheduleComponent,
-    ChangeScheduleComponent
+    ChangeScheduleComponent,
+    AdminProfileComponent
   ],
   imports: [
     BrowserModule,

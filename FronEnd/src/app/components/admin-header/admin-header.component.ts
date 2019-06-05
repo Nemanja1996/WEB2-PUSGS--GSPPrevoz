@@ -15,10 +15,11 @@ export class AdminHeaderComponent implements OnInit {
   }
 
   Profile(){
-
+    this.router.navigate(["admin", "profile"]);
   }
   LogOut(){
     this.authService.logout();
     this.router.navigate(["unauthorizedUser"]);
   }
+
 }

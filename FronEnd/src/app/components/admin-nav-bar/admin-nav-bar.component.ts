@@ -26,6 +26,10 @@ export class AdminNavBarComponent implements OnInit {
     this.router.navigate(["admin", "priceList"])
   }
 
+  profile() {
+    this.router.navigate(["admin", "profile"])
+  }
+
   ngOnInit() {
   }
 

@@ -1,74 +1,76 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-
-<div class="container">
-<table class="table table-striped" style="width: 40%;">
-    <tbody>
-        <tr>
-            <td colspan="1">
-                <h3>Registracija</h3>
-                <form [formGroup]="registerForm" (ngSubmit)="register()" class="well form-horizontal">
-                    <fieldset>
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">Ime</label>
-                            <div class="col-md-8 inputGroupContainer">
-                                <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span><input
-                                        id="firstName" name="fullName" placeholder="Ime" class="form-control" required="true"
-                                        type="text" formControlName="firstName"></div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">Prezime</label>
-                            <div class="col-md-8 inputGroupContainer">
-                                <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span><input
-                                        id="seondName" name="firstName" placeholder="Prezime" class="form-control"
-                                        required="true" type="text" formControlName="lastName"></div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">Adresa</label>
-                            <div class="col-md-8 inputGroupContainer">
-                                <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span><input
-                                        id="adress" name="adress" placeholder="Adresa" class="form-control" required="true"
-                                        type="text" formControlName="address"></div>
-                            </div>
-                        </div>
-
-
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">Email</label>
-                            <div class="col-md-8 inputGroupContainer">
-                                <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span><input
-                                        id="email" name="email" placeholder="Email" class="form-control" required="true"
-                                        type="email" formControlName="email"></div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">Lozinka</label>
-                            <div class="col-md-8 inputGroupContainer">
-                                <div class="input-group"><span class="input-group-addon"><i class="fa fa-lock fa-lg"></i></span><input
-                                        id="password" name="email" placeholder="Lozinka" class="form-control" required="true"
-                                        type="password" formControlName="password"></div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-4 control-label">Potvrdi lozinku</label>
-                            <div class="col-md-8 inputGroupContainer">
-                                <div class="input-group"><span class="input-group-addon"><i class="fa fa-lock fa-lg"></i></span><input
-                                        id="passwordConfirm" name="passwordConfirm" placeholder="Potvrdi lozinku" class="form-control"
-                                        required="true" type="password" formControlName="confirmPassword"></div>
-                            </div>
-                        </div>
-                        <div class="error" *ngIf="registerForm.get('confirmPassword').errors && registerForm.get('confirmPassword').errors.ConfirmPassword">
-                            Lozinke se ne poklapaju.
-                        </div>
-                    </fieldset>
-                    <button type="submit" class="btn btn-secondary" [disabled]="!registerForm.valid">Registruj</button>
-                </form>
-            </td>
-        </tr>
-    </tbody>
-</table>
+<h4>Registracija</h4>
+<div class="profile-form" style="width: 50%;">
+    <form [formGroup]="registerForm" (ngSubmit)="register()">
+        <div class="form-group row">
+            <label for="firstName" class="col-sm-2 col-form-label">Ime</label>
+            <div class="col-sm-10">
+                <input type="text" required formControlName="firstName" class="form-control" id="firstName">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="lastName" class="col-sm-2 col-form-label">Prezime</label>
+            <div class="col-sm-10">
+                <input type="text" required formControlName="lastName" class="form-control" id="lastName">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="Email" class="col-sm-2 col-form-label">Email</label>
+            <div class="col-sm-10">
+                <input type="email" required formControlName="email" class="form-control" id="Email">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="Password" class="col-sm-2 col-form-label">Lozinka</label>
+            <div class="col-sm-10">
+                <input type="password" required formControlName="password" class="form-control" id="Password">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="PasswordConfirm" class="col-sm-2 col-form-label">Ponovi lozinku</label>
+            <div class="col-sm-10">
+                <input type="password" required formControlName="confirmPassword" class="form-control" id="PasswordConfirm">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="phone" class="col-sm-2 col-form-label">Telefon</label>
+            <div class="col-sm-10">
+                <input type="tel" class="form-control" formControlName="Phone" id="phone">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="birth" class="col-sm-2 col-form-label">Datum rodjenja</label>
+            <div class="col-sm-10">
+                <input type="date" required class="form-control" formControlName="Birthday" id="birth">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="address" class="col-sm-2 col-form-label">Adresa</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" formControlName="address" id="address">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="type" class="col-sm-2 col-form-label">Tip korisnika</label>
+            <div class="col-sm-10">
+                <select class="form-control" id="typeFormControl" required>
+                    <option>Regularni korisnik</option>
+                    <option>Djak</option>
+                    <option>Penzioner</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="image" class="col-sm-2">Dokument</label>
+            <div class="col-sm-10">
+                <input type="file" class="form-control-file" formControlName="ImageUpload" id="FormControlFile1">
+            </div>
+        </div>
+        <div class="error" style="color: red;" *ngIf="registerForm.get('confirmPassword').errors && registerForm.get('confirmPassword').errors.ConfirmPassword">
+            Lozinke se ne poklapaju.
+        </div>
+        <div class="col-sm-10">
+            <button type="submit" [disabled]="!registerForm.valid" class="btn btn-secondary">Registruj se</button>
+            <!-- <a href="/" class="btn btn-secondary">Otkazi</a> -->
+        </div>
+    </form>
 </div>
