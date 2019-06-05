@@ -1,4 +1,5 @@
 <div class="container">
+  <h4>Unesite Email adresu da biste kupili kartu</h4>
     <table class="table table-striped" style="width: 70%;">
       <tbody>
         <tr>
@@ -7,7 +8,7 @@
                 <fieldset>
                   <div class="col-md-8 inputGroupContainer">
                     <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span><input
-                        id="email" formControlName="email" style="width: 40%;" class="form-control" required="true" type="text">
+                        id="email" formControlName="email" placeholder="example@mail.com" style="width: 40%;" class="form-control" required="true" type="text">
                       </div>
                       <br>
                       <button type="submit" [disabled]="!buyForm.valid" class="btn btn-secondary">Kupi kartu</button>

@@ -109,7 +109,7 @@ namespace WebApp.Controllers
 
             return Ok(ticket);
         }
-        [ResponseType(typeof(void))]
+        [ResponseType(typeof(bool))]
         [Route("api/Tickets/BuyTimeTicket")]
         public IHttpActionResult PostTimeTicket(Email email)
         {
@@ -117,13 +117,25 @@ namespace WebApp.Controllers
             TicketType timeTicket = db.TicketTypes.Find(x => x.Name == "Vremenska").FirstOrDefault();
             ticket.IsValid = true;
             ticket.TimeIssued = DateTime.Now;
-            ticket.CatalogueHistoryID = timeTicket.Id;
+            ticket.TicketTypeID = timeTicket.Id;
+            CatalogueHistory catalogueHistory = db.CatalogueHistory.Find(x => x.TicketTypeID == ticket.TicketTypeID).FirstOrDefault();
+            ticket.CatalogueHistoryID = catalogueHistory.Id; 
             db.Tickets.Add(ticket);
             db.Complete();
 
-            SendEmail("GSP Service", "prevoz@gsp.com", email.Value, "GSP Service, kupovina karte.", "Postovani, Vasa karta traje sat vremena i istice  " + DateTime.Now.ToString() + "  Hvala na koriscenju usluga");
+            DateTime validTo = ticket.TimeIssued.AddHours(1);
 
-            return Ok();
+            try
+            {
+                SendEmail("GSP Service", "prevoz@gsp.com", email.Value, "GSP Service, kupovina karte.", $"Postovani, Vasa karta traje sat vremena i istice {validTo}.\n  Hvala na koriscenju usluga");
+
+                return Ok(true);
+
+            }
+            catch (Exception)
+            {
+                return Ok(false);
+            }
         }
 
         private void SendEmail(string sendername, string sender, string recipient, string subject, string body)

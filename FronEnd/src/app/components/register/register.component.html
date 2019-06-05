@@ -3,73 +3,72 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 
-
 <div class="container">
-    <table class="table table-striped" style="width: 40%;">
-            <tbody>
-                <tr>
-                    <td colspan="1">
-                        <h3>Registracija</h3>
-                        <form [formGroup]="registerForm" (ngSubmit)="register()" class="well form-horizontal">
-                            <fieldset>
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label">Ime</label>
-                                <div class="col-md-8 inputGroupContainer">
-                                    <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span><input
-                                            id="firstName" name="fullName" placeholder="Ime" class="form-control"
-                                            required="true" type="text" formControlName="firstName"></div>
-                                </div>
+<table class="table table-striped" style="width: 40%;">
+    <tbody>
+        <tr>
+            <td colspan="1">
+                <h3>Registracija</h3>
+                <form [formGroup]="registerForm" (ngSubmit)="register()" class="well form-horizontal">
+                    <fieldset>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Ime</label>
+                            <div class="col-md-8 inputGroupContainer">
+                                <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span><input
+                                        id="firstName" name="fullName" placeholder="Ime" class="form-control" required="true"
+                                        type="text" formControlName="firstName"></div>
                             </div>
-                            <div class="form-group">
-                                <label class="col-md-4 control-label">Prezime</label>
-                                <div class="col-md-8 inputGroupContainer">
-                                    <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span><input
-                                            id="seondName" name="firstName" placeholder="Prezime" class="form-control"
-                                            required="true" type="text" formControlName="lastName"></div>
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Prezime</label>
+                            <div class="col-md-8 inputGroupContainer">
+                                <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span><input
+                                        id="seondName" name="firstName" placeholder="Prezime" class="form-control"
+                                        required="true" type="text" formControlName="lastName"></div>
                             </div>
-                            <div class="form-group">
-                                <label class="col-md-4 control-label">Adresa</label>
-                                <div class="col-md-8 inputGroupContainer">
-                                    <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span><input
-                                            id="adress" name="adress" placeholder="Adresa" class="form-control"
-                                            required="true" type="text" formControlName="address"></div>
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Adresa</label>
+                            <div class="col-md-8 inputGroupContainer">
+                                <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span><input
+                                        id="adress" name="adress" placeholder="Adresa" class="form-control" required="true"
+                                        type="text" formControlName="address"></div>
                             </div>
+                        </div>
 
 
-                            <div class="form-group">
-                                <label class="col-md-4 control-label">Email</label>
-                                <div class="col-md-8 inputGroupContainer">
-                                    <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span><input
-                                            id="email" name="email" placeholder="Email" class="form-control" required="true"
-                                            type="email" formControlName="email"></div>
-                                </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Email</label>
+                            <div class="col-md-8 inputGroupContainer">
+                                <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span><input
+                                        id="email" name="email" placeholder="Email" class="form-control" required="true"
+                                        type="email" formControlName="email"></div>
                             </div>
-                            <div class="form-group">
-                                <label class="col-md-4 control-label">Lozinka</label>
-                                <div class="col-md-8 inputGroupContainer">
-                                    <div class="input-group"><span class="input-group-addon"><i class="fa fa-lock fa-lg"></i></span><input
-                                            id="password" name="email" placeholder="Lozinka" class="form-control"
-                                            required="true" type="password" formControlName="password"></div>
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Lozinka</label>
+                            <div class="col-md-8 inputGroupContainer">
+                                <div class="input-group"><span class="input-group-addon"><i class="fa fa-lock fa-lg"></i></span><input
+                                        id="password" name="email" placeholder="Lozinka" class="form-control" required="true"
+                                        type="password" formControlName="password"></div>
                             </div>
-                           <div class="form-group">
-                                <label class="col-md-4 control-label">Potvrdi lozinku</label>
-                                <div class="col-md-8 inputGroupContainer">
-                                    <div class="input-group"><span class="input-group-addon"><i class="fa fa-lock fa-lg"></i></span><input
-                                            id="passwordConfirm" name="passwordConfirm" placeholder="Potvrdi lozinku" class="form-control"
-                                            required="true" type="password" formControlName="confirmPassword"></div>
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-4 control-label">Potvrdi lozinku</label>
+                            <div class="col-md-8 inputGroupContainer">
+                                <div class="input-group"><span class="input-group-addon"><i class="fa fa-lock fa-lg"></i></span><input
+                                        id="passwordConfirm" name="passwordConfirm" placeholder="Potvrdi lozinku" class="form-control"
+                                        required="true" type="password" formControlName="confirmPassword"></div>
                             </div>
-                            <div class="error" *ngIf="registerForm.get('confirmPassword').errors && registerForm.get('confirmPassword').errors.ConfirmPassword">
-                                    Lozinke se ne poklapaju.
-                            </div>
-                        </fieldset>
-                        <button type="submit"  class="btn btn-secondary" [disabled]="!registerForm.valid">Registruj</button>
-                    </form>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+                        </div>
+                        <div class="error" *ngIf="registerForm.get('confirmPassword').errors && registerForm.get('confirmPassword').errors.ConfirmPassword">
+                            Lozinke se ne poklapaju.
+                        </div>
+                    </fieldset>
+                    <button type="submit" class="btn btn-secondary" [disabled]="!registerForm.valid">Registruj</button>
+                </form>
+            </td>
+        </tr>
+    </tbody>
+</table>
 </div>
