@@ -17,7 +17,7 @@ import { ScheduleComponent } from './components/schedule/schedule.component';
 import { LinesGridComponent } from './components/lines-grid/lines-grid.component';
 import { VehicleLocationComponent } from './components/vehicle-location/vehicle-location.component';
 import { PriceListComponent } from './components/price-list/price-list.component';
-import { ScheduleHttpService, AddScheduleHttpService } from './services/schedule/schedule.service';
+import { ScheduleHttpService, AddScheduleHttpService, ChangeScheduleHttpService } from './services/schedule/schedule.service';
 import { CatalogueHttpService } from './services/catalogue/catalogue.service';
 import { DepartureHttpService } from './services/schedule/departure.service';
 import { AdminComponent } from './components/admin/admin.component';
@@ -93,7 +93,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}, AuthService, ScheduleHttpService, CatalogueHttpService, DepartureHttpService, TimeTicketHttpService, AddScheduleHttpService],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}, AuthService, ScheduleHttpService, CatalogueHttpService, DepartureHttpService, TimeTicketHttpService, AddScheduleHttpService, ChangeScheduleHttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

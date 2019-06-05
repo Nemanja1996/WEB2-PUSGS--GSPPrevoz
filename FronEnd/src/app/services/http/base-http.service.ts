@@ -28,4 +28,7 @@ export class BaseHttpService<T>{
     post(parms: T):Observable<T>{
         return this.http.post<T>(this.baseUrl + this.specificUrl, parms);
     }
+    put(id: number, data: T):Observable<T>{
+        return this.http.put<T>(this.baseUrl + this.specificUrl + `/${id}`, data);
+    }
 }

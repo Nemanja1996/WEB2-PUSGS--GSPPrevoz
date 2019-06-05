@@ -12,3 +12,7 @@ export class ScheduleHttpService extends BaseHttpService<ScheduleInfo>{
 export class AddScheduleHttpService extends BaseHttpService<Schedule>{
     specificUrl = "/api/Schedules"
 }
+
+export class ChangeScheduleHttpService extends BaseHttpService<Schedule>{
+    specificUrl = "/api/Schedules"
+}
