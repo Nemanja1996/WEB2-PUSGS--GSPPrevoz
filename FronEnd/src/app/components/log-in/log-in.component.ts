@@ -29,6 +29,9 @@ export class LogInComponent implements OnInit {
         if(data === "admin"){
           this.router.navigate(["admin"]);
         }
+        else if (data === "user") {
+          this.router.navigate(["user"]);
+        }
         else{
           this.router.navigate(["unauthorizedUser", "logIn"]);
         }

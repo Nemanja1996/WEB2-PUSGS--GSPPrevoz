@@ -39,6 +39,9 @@ import { StationsComponent } from './components/stations/stations.component';
 import { ApplicationUserHttpService, RegisterApplicationUserHttpService } from './services/user/user.service';
 import { AgmCoreModule } from '@agm/core';
 import { GetAllStationsHttpService } from './services/station/station.service';
+import { UserNavBarComponent } from './components/user-nav-bar/user-nav-bar.component';
+import { UserHeaderComponent } from './components/user-header/user-header.component';
+import { UserComponent } from './components/user/user.component';
 
 const childrenRoutes : Routes = [
   {path: "logIn", component: LogInComponent},
@@ -64,9 +67,20 @@ const childrenRoutesAdmin : Routes = [
   
 ]
 
+const childrenRoutesUser : Routes = [
+  {path: "logIn", component: LogInComponent},
+  {path: "register", component: RegisterComponent},
+  {path: "schedule", component: ScheduleComponent},
+  {path: "linesGrid", component: LinesGridComponent},
+  {path: "vehicleLocation", component: VehicleLocationComponent},
+  {path: "priceList", component: PriceListComponent},
+  {path: "buyTicket", component: BuyTicketComponent}
+]
+
 const routes: Routes = [
   {path: "unauthorizedUser", component: UnauthorizeUserComponent, children: childrenRoutes},
   {path: "admin", component: AdminComponent, canActivate: [AuthGuard], children: childrenRoutesAdmin},
+  {path: "user", component: UserComponent, children: childrenRoutesUser},
   {path: "", redirectTo: "/unauthorizedUser", pathMatch: "full"}
 ]
 
@@ -95,7 +109,10 @@ const routes: Routes = [
     ChangeScheduleComponent,
     AdminProfileComponent,
     AddStationComponent,
-    StationsComponent
+    StationsComponent,
+    UserNavBarComponent,
+    UserHeaderComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,

@@ -45,6 +45,11 @@ export class AuthService {
 
           observable.complete();
         }
+        else if (role === "AppUser") {
+          observable.next('user');
+
+          observable.complete();
+        }
       },
       err => {
       observable.next('greska')

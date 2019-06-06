@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Security.Claims;
 using System.Security.Cryptography;
@@ -16,6 +17,7 @@ using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 using WebApp.Models;
+using WebApp.Persistence;
 using WebApp.Persistence.UnitOfWork;
 using WebApp.Providers;
 using WebApp.Results;
@@ -32,6 +34,7 @@ namespace WebApp.Controllers
         private ApplicationUserManager _userManager;
 
         private IUnitOfWork db;
+        private ApplicationDbContext context;
 
         public AccountController(IUnitOfWork db)
         {
@@ -77,19 +80,10 @@ namespace WebApp.Controllers
 
             return Ok(user);
 
-            //return new UserInfoViewModel
-            //{
-            //    Email = User.Identity.GetUserName(),
-            //    HasRegistered = externalLogin == null,
-            //    LoginProvider = externalLogin != null ? externalLogin.LoginProvider : null,
-            //    //Address = externalLogin.
-
-            //    //Address = User.Identity.
-            //};
         }
 
         // GET api/Account/UserProfile
-        
+
         [ResponseType(typeof(ApplicationUser))]
         [Route("api/Account/UserProfile")]
         public IHttpActionResult GetUserProfile()
@@ -160,7 +154,7 @@ namespace WebApp.Controllers
 
             IdentityResult result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword,
                 model.NewPassword);
-            
+
             if (!result.Succeeded)
             {
                 return GetErrorResult(result);
@@ -293,9 +287,9 @@ namespace WebApp.Controllers
             if (hasRegistered)
             {
                 Authentication.SignOut(DefaultAuthenticationTypes.ExternalCookie);
-                
-                 ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(UserManager,
-                    OAuthDefaults.AuthenticationType);
+
+                ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(UserManager,
+                   OAuthDefaults.AuthenticationType);
                 ClaimsIdentity cookieIdentity = await user.GenerateUserIdentityAsync(UserManager,
                     CookieAuthenticationDefaults.AuthenticationType);
 
@@ -354,17 +348,20 @@ namespace WebApp.Controllers
         }
 
         // POST api/Account/Register
+        [HttpPost]
         [AllowAnonymous]
         [Route("Register")]
         public async Task<IHttpActionResult> Register(RegisterBindingModel model)
         {
-            //Request.GetOwinContext().Authentication.User.Identity.Name; //
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, BirthDate = model.BirthDate, Address = model.Address, PassengerTypeId = model.PassengerTypeId, PhoneNumber = model.PhoneNumber, ImageUrl = model.ImageUrl };
+            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, BirthDate = model.BirthDate, Address = model.Address,  PhoneNumber = model.PhoneNumber};
+
+            //user.PasswordHash = ApplicationUser.HashPassword(model.Password);
+            //UserManager.Create(user);
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 
@@ -372,9 +369,17 @@ namespace WebApp.Controllers
             {
                 return GetErrorResult(result);
             }
+            
+            result = await UserManager.AddToRoleAsync(user.Id, "AppUser");
+            if (!result.Succeeded)
+            {
+                return GetErrorResult(result);
+            }
 
             return Ok();
+
         }
+
 
         // POST api/Account/RegisterExternal
         [OverrideAuthentication]
@@ -404,7 +409,7 @@ namespace WebApp.Controllers
             result = await UserManager.AddLoginAsync(user.Id, info.Login);
             if (!result.Succeeded)
             {
-                return GetErrorResult(result); 
+                return GetErrorResult(result);
             }
             return Ok();
         }
