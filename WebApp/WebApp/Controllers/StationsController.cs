@@ -78,18 +78,18 @@ namespace WebApp.Controllers
         }
 
         // POST: api/Stations
-        [ResponseType(typeof(Station))]
+        [ResponseType(typeof(bool))]
         public IHttpActionResult PostStation(Station station)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return Ok(false);
             }
 
             db.Stations.Add(station);
             db.Complete();
 
-            return CreatedAtRoute("DefaultApi", new { id = station.Id }, station);
+            return Ok(true);
         }
 
         // DELETE: api/Stations/5

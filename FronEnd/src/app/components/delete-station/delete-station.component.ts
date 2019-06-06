@@ -4,12 +4,12 @@ import { GetAllStationsHttpService } from 'src/app/services/station/station.serv
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-stations',
-  templateUrl: './stations.component.html',
-  styleUrls: ['./stations.component.css'],
+  selector: 'app-delete-station',
+  templateUrl: './delete-station.component.html',
+  styleUrls: ['./delete-station.component.css'],
   styles: ['agm-map {height: 450px; width: 650px;}']
 })
-export class StationsComponent implements OnInit {
+export class DeleteStationComponent implements OnInit {
   public zoom: number;
   stations: Array<Station> = [];
   imageUrl: string = "./assets/busicon.png";
@@ -25,13 +25,4 @@ export class StationsComponent implements OnInit {
     console.log(this.stations);
   }
 
-  addStation(){
-    this.router.navigate(["admin", "addStation"]);
-  }
-  changeStation(){
-    this.router.navigate(["admin", "changeStation"]);
-  }
-  deleteStation(){
-    this.router.navigate(["admin", "deleteStation"]);
-  }
 }

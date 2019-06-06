@@ -38,7 +38,9 @@ import { AddStationComponent } from './components/add-station/add-station.compon
 import { StationsComponent } from './components/stations/stations.component';
 import { ApplicationUserHttpService, RegisterApplicationUserHttpService } from './services/user/user.service';
 import { AgmCoreModule } from '@agm/core';
-import { GetAllStationsHttpService } from './services/station/station.service';
+import { GetAllStationsHttpService, AddStationHttpService } from './services/station/station.service';
+import { ChangeStationComponent } from './components/change-station/change-station.component';
+import { DeleteStationComponent } from './components/delete-station/delete-station.component';
 
 const childrenRoutes : Routes = [
   {path: "logIn", component: LogInComponent},
@@ -60,8 +62,10 @@ const childrenRoutesAdmin : Routes = [
   {path: "addSchedule", component: AddScheduleComponent},
   {path: "changeSchedule", component: ChangeScheduleComponent},
   {path: "profile", component: AdminProfileComponent},
-  {path: "stations", component: StationsComponent}
-  
+  {path: "stations", component: StationsComponent},
+  {path: "addStation", component: AddStationComponent},
+  {path: "deleteStation", component: DeleteStationComponent},
+  {path: "changeStation", component: ChangeStationComponent}
 ]
 
 const routes: Routes = [
@@ -95,7 +99,9 @@ const routes: Routes = [
     ChangeScheduleComponent,
     AdminProfileComponent,
     AddStationComponent,
-    StationsComponent
+    StationsComponent,
+    ChangeStationComponent,
+    DeleteStationComponent
   ],
   imports: [
     BrowserModule,
@@ -105,7 +111,7 @@ const routes: Routes = [
     FormsModule,
     AgmCoreModule.forRoot({apiKey: 'AIzaSyDnihJyw_34z5S1KZXp90pfTGAqhFszNJk'})
   ],
-    providers: [{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }, AuthService, ScheduleHttpService, CatalogueHttpService, DepartureHttpService, TimeTicketHttpService, AddScheduleHttpService, ChangeScheduleHttpService, DeleteScheduleHttpService, ApplicationUserHttpService, RegisterApplicationUserHttpService, GetAllStationsHttpService],
+    providers: [{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }, AuthService, ScheduleHttpService, CatalogueHttpService, DepartureHttpService, TimeTicketHttpService, AddScheduleHttpService, ChangeScheduleHttpService, DeleteScheduleHttpService, ApplicationUserHttpService, RegisterApplicationUserHttpService, GetAllStationsHttpService, AddStationHttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

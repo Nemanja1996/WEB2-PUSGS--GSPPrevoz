@@ -4,3 +4,7 @@ import { Station } from 'src/app/models/Station';
 export class GetAllStationsHttpService extends BaseHttpService<Station[]>{
     specificUrl = "/api/Stations"
 }
+
+export class AddStationHttpService extends BaseHttpService<Station>{
+    specificUrl = "/api/Stations"
+}
