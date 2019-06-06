@@ -30,6 +30,10 @@ export class AdminNavBarComponent implements OnInit {
     this.router.navigate(["admin", "profile"])
   }
 
+  stations(){
+    this.router.navigate(["admin", "stations"])
+  }
+
   ngOnInit() {
   }
 

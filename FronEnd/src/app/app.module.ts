@@ -36,6 +36,8 @@ import { ChangeScheduleComponent } from './components/change-schedule/change-sch
 import { AdminProfileComponent } from './components/admin-profile/admin-profile.component';
 import { AddStationComponent } from './components/add-station/add-station.component';
 import { StationsComponent } from './components/stations/stations.component';
+import { AgmCoreModule } from '@agm/core';
+import { GetAllStationsHttpService } from './services/station/station.service';
 
 const childrenRoutes : Routes = [
   {path: "logIn", component: LogInComponent},
@@ -91,16 +93,18 @@ const routes: Routes = [
     DeleteScheduleComponent,
     ChangeScheduleComponent,
     AdminProfileComponent,
-    AddStationComponent
+    AddStationComponent,
+    StationsComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    AgmCoreModule.forRoot({apiKey: 'AIzaSyDnihJyw_34z5S1KZXp90pfTGAqhFszNJk'})
   ],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}, AuthService, ScheduleHttpService, CatalogueHttpService, DepartureHttpService, TimeTicketHttpService, AddScheduleHttpService, ChangeScheduleHttpService, DeleteScheduleHttpService],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}, AuthService, ScheduleHttpService, CatalogueHttpService, DepartureHttpService, TimeTicketHttpService, AddScheduleHttpService, ChangeScheduleHttpService, DeleteScheduleHttpService, GetAllStationsHttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -323,6 +323,7 @@ namespace WebApp.Controllers
         [Route("Register")]
         public async Task<IHttpActionResult> Register(RegisterBindingModel model)
         {
+            //Request.GetOwinContext().Authentication.User.Identity.Name; //
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
