@@ -26,7 +26,7 @@ namespace WebApp.Models
         [StringLength(20)]
         public string BirthDate { get; set; }
         [Required]
-        [StringLength(30)]
+        [StringLength(50)]
         public string Address { get; set; }
         [Required]
         public bool Approved { get; set; }
