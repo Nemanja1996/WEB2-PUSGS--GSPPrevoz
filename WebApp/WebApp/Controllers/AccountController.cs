@@ -82,6 +82,24 @@ namespace WebApp.Controllers
 
         }
 
+        [HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
+        [ResponseType(typeof(ApplicationUser))]
+        [Route("RegularUserInfo")]
+        public IHttpActionResult GetRegularUserInfo()
+        {
+            ExternalLoginData externalLogin = ExternalLoginData.FromIdentity(User.Identity as ClaimsIdentity);
+
+            ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext()
+                                    .GetUserManager<ApplicationUserManager>()
+                                    .FindById(User.Identity.GetUserId());
+            
+
+            return Ok(user);
+
+        }
+
+
+
         // GET api/Account/UserProfile
 
         [ResponseType(typeof(ApplicationUser))]

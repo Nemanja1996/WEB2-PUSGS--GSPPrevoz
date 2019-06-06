@@ -10,3 +10,7 @@ export class ApplicationUserHttpService extends BaseHttpService<ApplicationUser>
 export class RegisterApplicationUserHttpService extends BaseHttpService<ApplicationUser>{
     specificUrl = "/api/Account/Register"
 }
+
+export class UserProfileHttpService extends BaseHttpService<ApplicationUser> {
+    specificUrl = "/api/Account/RegularUserInfo"
+}

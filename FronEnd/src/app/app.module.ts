@@ -36,15 +36,15 @@ import { ChangeScheduleComponent } from './components/change-schedule/change-sch
 import { AdminProfileComponent } from './components/admin-profile/admin-profile.component';
 import { AddStationComponent } from './components/add-station/add-station.component';
 import { StationsComponent } from './components/stations/stations.component';
-import { ApplicationUserHttpService, RegisterApplicationUserHttpService } from './services/user/user.service';
+import { ApplicationUserHttpService, RegisterApplicationUserHttpService, UserProfileHttpService } from './services/user/user.service';
 import { AgmCoreModule } from '@agm/core';
-import { GetAllStationsHttpService } from './services/station/station.service';
 import { UserNavBarComponent } from './components/user-nav-bar/user-nav-bar.component';
 import { UserHeaderComponent } from './components/user-header/user-header.component';
 import { UserComponent } from './components/user/user.component';
 import { GetAllStationsHttpService, AddStationHttpService } from './services/station/station.service';
 import { ChangeStationComponent } from './components/change-station/change-station.component';
 import { DeleteStationComponent } from './components/delete-station/delete-station.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 const childrenRoutes : Routes = [
   {path: "logIn", component: LogInComponent},
@@ -75,6 +75,7 @@ const childrenRoutesAdmin : Routes = [
 const childrenRoutesUser : Routes = [
   {path: "logIn", component: LogInComponent},
   {path: "register", component: RegisterComponent},
+  {path: "profile", component: UserProfileComponent},
   {path: "schedule", component: ScheduleComponent},
   {path: "linesGrid", component: LinesGridComponent},
   {path: "vehicleLocation", component: VehicleLocationComponent},
@@ -119,7 +120,8 @@ const routes: Routes = [
     UserHeaderComponent,
     UserComponent,
     ChangeStationComponent,
-    DeleteStationComponent
+    DeleteStationComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -129,7 +131,7 @@ const routes: Routes = [
     FormsModule,
     AgmCoreModule.forRoot({apiKey: 'AIzaSyDnihJyw_34z5S1KZXp90pfTGAqhFszNJk'})
   ],
-    providers: [{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }, AuthService, ScheduleHttpService, CatalogueHttpService, DepartureHttpService, TimeTicketHttpService, AddScheduleHttpService, ChangeScheduleHttpService, DeleteScheduleHttpService, ApplicationUserHttpService, RegisterApplicationUserHttpService, GetAllStationsHttpService, AddStationHttpService],
+    providers: [{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }, AuthService, ScheduleHttpService, CatalogueHttpService, DepartureHttpService, TimeTicketHttpService, AddScheduleHttpService, ChangeScheduleHttpService, DeleteScheduleHttpService, ApplicationUserHttpService, RegisterApplicationUserHttpService, GetAllStationsHttpService, AddStationHttpService, UserProfileHttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -5,7 +5,8 @@ export class ApplicationUser {
     BirthDate: string
     Email: string
     PhoneNumber: string
-    Approved: boolean
+    Approved: string
     Address: string
     ImageUrl: string 
+    PassengerTypeId: string
 }
