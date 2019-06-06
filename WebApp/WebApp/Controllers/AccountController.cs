@@ -6,7 +6,9 @@ using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Description;
 using System.Web.Http.ModelBinding;
+using System.Web.Security;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
@@ -14,17 +16,27 @@ using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 using WebApp.Models;
+using WebApp.Persistence.UnitOfWork;
 using WebApp.Providers;
 using WebApp.Results;
 
 namespace WebApp.Controllers
 {
+    //Request.GetOwinContext().Authentication.User.Identity.Name
+
     [Authorize]
     [RoutePrefix("api/Account")]
     public class AccountController : ApiController
     {
         private const string LocalLoginProvider = "Local";
         private ApplicationUserManager _userManager;
+
+        private IUnitOfWork db;
+
+        public AccountController(IUnitOfWork db)
+        {
+            this.db = db;
+        }
 
         public AccountController()
         {
@@ -53,17 +65,40 @@ namespace WebApp.Controllers
 
         // GET api/Account/UserInfo
         [HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
+        [ResponseType(typeof(ApplicationUser))]
         [Route("UserInfo")]
-        public UserInfoViewModel GetUserInfo()
+        public IHttpActionResult GetUserInfo()
         {
             ExternalLoginData externalLogin = ExternalLoginData.FromIdentity(User.Identity as ClaimsIdentity);
 
-            return new UserInfoViewModel
-            {
-                Email = User.Identity.GetUserName(),
-                HasRegistered = externalLogin == null,
-                LoginProvider = externalLogin != null ? externalLogin.LoginProvider : null
-            };
+            ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext()
+                                    .GetUserManager<ApplicationUserManager>()
+                                    .FindById(User.Identity.GetUserId());
+
+            return Ok(user);
+
+            //return new UserInfoViewModel
+            //{
+            //    Email = User.Identity.GetUserName(),
+            //    HasRegistered = externalLogin == null,
+            //    LoginProvider = externalLogin != null ? externalLogin.LoginProvider : null,
+            //    //Address = externalLogin.
+
+            //    //Address = User.Identity.
+            //};
+        }
+
+        // GET api/Account/UserProfile
+        
+        [ResponseType(typeof(ApplicationUser))]
+        [Route("api/Account/UserProfile")]
+        public IHttpActionResult GetUserProfile()
+        {
+            string username = Request.GetOwinContext().Authentication.User.Identity.Name;
+
+            //ApplicationUser user = 
+
+            return Ok();
         }
 
         // POST api/Account/Logout
@@ -328,7 +363,7 @@ namespace WebApp.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
+            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, BirthDate = model.BirthDate, Address = model.Address, PassengerTypeId = model.PassengerTypeId, PhoneNumber = model.PhoneNumber, ImageUrl = model.ImageUrl };
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
 

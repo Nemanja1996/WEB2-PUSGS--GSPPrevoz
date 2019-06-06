@@ -36,6 +36,7 @@ import { ChangeScheduleComponent } from './components/change-schedule/change-sch
 import { AdminProfileComponent } from './components/admin-profile/admin-profile.component';
 import { AddStationComponent } from './components/add-station/add-station.component';
 import { StationsComponent } from './components/stations/stations.component';
+import { ApplicationUserHttpService, RegisterApplicationUserHttpService } from './services/user/user.service';
 
 const childrenRoutes : Routes = [
   {path: "logIn", component: LogInComponent},
@@ -91,7 +92,8 @@ const routes: Routes = [
     DeleteScheduleComponent,
     ChangeScheduleComponent,
     AdminProfileComponent,
-    AddStationComponent
+    AddStationComponent,
+    StationsComponent
   ],
   imports: [
     BrowserModule,
@@ -100,7 +102,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}, AuthService, ScheduleHttpService, CatalogueHttpService, DepartureHttpService, TimeTicketHttpService, AddScheduleHttpService, ChangeScheduleHttpService, DeleteScheduleHttpService],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}, AuthService, ScheduleHttpService, CatalogueHttpService, DepartureHttpService, TimeTicketHttpService, AddScheduleHttpService, ChangeScheduleHttpService, DeleteScheduleHttpService, ApplicationUserHttpService, RegisterApplicationUserHttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
