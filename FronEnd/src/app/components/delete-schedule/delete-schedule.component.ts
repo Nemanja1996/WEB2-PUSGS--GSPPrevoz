@@ -5,7 +5,8 @@ import { LineType } from 'src/app/models/LineType';
 import { Line } from 'src/app/models/Line';
 import { Schedule } from 'src/app/models/Schedule';
 import { Router } from '@angular/router';
-import { ScheduleHttpService } from 'src/app/services/schedule/schedule.service';
+import { ScheduleHttpService, DeleteScheduleHttpService } from 'src/app/services/schedule/schedule.service';
+import { DepartureHttpService } from 'src/app/services/schedule/departure.service';
 
 @Component({
   selector: 'app-delete-schedule',
@@ -21,7 +22,8 @@ export class DeleteScheduleComponent implements OnInit {
   schedule: Schedule = new Schedule();
   departures: string;
   message: string
-  constructor(private http: ScheduleHttpService, private router: Router) { }
+  constructor(private http: ScheduleHttpService, private router: Router, private httpDeparture: DepartureHttpService, private httpDeleteSchedule: DeleteScheduleHttpService) { }
+
 
   ngOnInit() {
     this.http.getAll().subscribe((scheduleInfo) => {
@@ -50,8 +52,36 @@ export class DeleteScheduleComponent implements OnInit {
     this.router.navigate(["admin", "schedule"]);
   }
 
+  changeseLine(){
+    this.httpDeparture.get(this.selectedLine.Id, this.selectedScheduleType.Id).subscribe((schedule)=>{
+      if(schedule != null){
+        this.schedule = schedule;
+        this.departures = this.schedule.Departure;
+        this.message = "";
+      }
+      else{
+        this.schedule.Departure = "";
+        this.departures = this.schedule.Departure;
+        this.message = "Za odabranu liniju ne postoji red voznje";
+      }
+      console.log(schedule);
+      err => console.log(err);
+    });
+  }
+
   deleteSchedule(){
-    //Odraditi brisanj reda voznje, pitati sretena kako bese da se to radi
+    this.httpDeleteSchedule.delete(this.schedule.Id).subscribe((data)=>{
+      if(data){
+        this.message = "Uspesno ste obrisali red voznje.";
+        this.selectedLine = null;
+        this.selectedLineType = null;
+        this.selectedScheduleType = null;
+        this.departures = "";
+      }
+      else{
+        this.message = "Neuspesno brisanje reda voznje";
+      }
+    });
   }
 
 }

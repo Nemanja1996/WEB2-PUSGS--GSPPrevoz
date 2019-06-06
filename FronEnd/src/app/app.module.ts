@@ -34,6 +34,8 @@ import { AddScheduleComponent } from './components/add-schedule/add-schedule.com
 import { DeleteScheduleComponent } from './components/delete-schedule/delete-schedule.component';
 import { ChangeScheduleComponent } from './components/change-schedule/change-schedule.component';
 import { AdminProfileComponent } from './components/admin-profile/admin-profile.component';
+import { AddStationComponent } from './components/add-station/add-station.component';
+import { StationsComponent } from './components/stations/stations.component';
 
 const childrenRoutes : Routes = [
   {path: "logIn", component: LogInComponent},
@@ -54,7 +56,8 @@ const childrenRoutesAdmin : Routes = [
   {path: "deleteSchedule", component: DeleteScheduleComponent},
   {path: "addSchedule", component: AddScheduleComponent},
   {path: "changeSchedule", component: ChangeScheduleComponent},
-  {path: "profile", component: AdminProfileComponent}
+  {path: "profile", component: AdminProfileComponent},
+  {path: "stations", component: StationsComponent}
   
 ]
 
@@ -87,7 +90,8 @@ const routes: Routes = [
     AddScheduleComponent,
     DeleteScheduleComponent,
     ChangeScheduleComponent,
-    AdminProfileComponent
+    AdminProfileComponent,
+    AddStationComponent
   ],
   imports: [
     BrowserModule,
