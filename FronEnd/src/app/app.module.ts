@@ -38,7 +38,6 @@ import { AddStationComponent } from './components/add-station/add-station.compon
 import { StationsComponent } from './components/stations/stations.component';
 import { ApplicationUserHttpService, RegisterApplicationUserHttpService } from './services/user/user.service';
 import { AgmCoreModule } from '@agm/core';
-import { GetAllStationsHttpService } from './services/station/station.service';
 import { UserNavBarComponent } from './components/user-nav-bar/user-nav-bar.component';
 import { UserHeaderComponent } from './components/user-header/user-header.component';
 import { UserComponent } from './components/user/user.component';
