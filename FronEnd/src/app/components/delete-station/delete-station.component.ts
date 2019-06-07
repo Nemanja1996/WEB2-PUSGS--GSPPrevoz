@@ -1,6 +1,6 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { Station } from 'src/app/models/Station';
-import { GetAllStationsHttpService } from 'src/app/services/station/station.service';
+import { GetAllStationsHttpService, DeleteStationHttpService } from 'src/app/services/station/station.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,9 +13,10 @@ export class DeleteStationComponent implements OnInit {
   public zoom: number;
   stations: Array<Station> = [];
   imageUrl: string = "./assets/busicon.png";
+  selectedStation: Station = undefined;
+  message: string = "";
   
-  constructor(private ngZone: NgZone, private httpStation: GetAllStationsHttpService, private router: Router){
-  
+  constructor(private ngZone: NgZone, private httpDeleteStation:DeleteStationHttpService, private httpStation: GetAllStationsHttpService, private router: Router){
   }
 
   ngOnInit() {
@@ -25,4 +26,27 @@ export class DeleteStationComponent implements OnInit {
     console.log(this.stations);
   }
 
+  getStation(station){
+    this.selectedStation = station;
+    console.log(this.selectedStation);
+  }
+  placeMarker($event){
+    this.selectedStation = undefined;
+    this.message="";
+    console.log(this.selectedStation);
+  }
+
+  otkazi(){
+    this.router.navigate(["admin", "stations"]);
+  }
+  deleteStation(){
+    this.httpDeleteStation.delete(this.selectedStation.Id).subscribe((data)=>{
+      if(data){
+        this.message = "Uspesno ste obrisali stanicu"
+      }
+      else{
+        this.message = "Neuspesno brisanje stanice";
+      }
+    });
+  }
 }

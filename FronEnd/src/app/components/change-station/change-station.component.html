@@ -1,8 +1,10 @@
+<div class="row">
+  <div class="col-sm-6">
 <p>
   <!-- Kreiramo mapu -->
   <agm-map [latitude]="45.242268" [longitude]="19.842954" [zoom]="18" (mapClick)="placeMarker($event)">  
 
-    <agm-marker *ngFor="let station of stations" [latitude]="station.Latitude" [longitude]="station.Longitude" [iconUrl]="imageUrl">
+    <agm-marker *ngFor="let station of stations" [latitude]="station.Latitude"  [longitude]="station.Longitude" [iconUrl]="imageUrl">
 
       <!-- Svakom markeru dodajemo info-window (Nije obavezno!)-->
       <agm-info-window [latitude]="station.Latitude" [longitude]="station.Longitude" >
@@ -12,8 +14,53 @@
         <br/>
         <span style="font-family:'Times New Roman'; color:gray;">{{station.Address}}</span>
         <br>
+        <button (click)="getStation(station)">Izmeni</button>
         <!--<span style="font-family:'Times New Roman'; color:gray;">Linije: {{station.Lines.Number}}</span>-->
       </agm-info-window>
     </agm-marker>
+
+    <agm-marker [latitude]="location.latitude"  [longitude]="location.longitude" [iconUrl]="imageUrl">
+      </agm-marker>
   </agm-map>
 </p>
+</div>
+
+<div class="col-sm-6">
+    <div class="profile-form" style="width: 40%;">
+        <form [formGroup]="changeStationForm" (ngSubmit)="changeStation()"> 
+            <div class="form-group row">
+                <label for="Longitude" class="col-sm-2 col-form-label">Longitude</label>
+                <div class="col-sm-10">
+                    <input type="text" required readonly="true" formControlName="longitude" class="form-control" id="longitude">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="Latitude" class="col-sm-2 col-form-label">Latitude</label>
+                <div class="col-sm-10">
+                    <input type="text" readonly="true" required formControlName="latitude" class="form-control" id="latitude">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="Naziv" class="col-sm-2 col-form-label">Naziv</label>
+                <div class="col-sm-10">
+                    <input type="text" required formControlName="name" class="form-control" id="name">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="Adresa" class="col-sm-2 col-form-label">Adresa</label>
+                <div class="col-sm-10">
+                    <input type="text" required formControlName="address" class="form-control" id="address">
+                </div>
+            </div>
+            <div class="form-group row">
+            <div class="col-sm-10">
+                <button type="submit" class="btn btn-secondary" [disabled]="!changeStationForm.valid">Izmeni</button>
+                <button class="btn btn-secondary" (click)="otkazi()">Otkazi</button>
+                &nbsp;
+            </div>
+          </div>
+        </form>
+        {{message}}
+    </div>
+</div>
+</div>

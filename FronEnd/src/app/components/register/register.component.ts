@@ -13,7 +13,7 @@ export class RegisterComponent implements OnInit {
 
   newUser: ApplicationUser = new ApplicationUser;
   message: string;
-  url: '';
+  url: string =  '';
 
   registerForm = this.fb.group({
     firstName: ['', Validators.required],
@@ -52,12 +52,11 @@ export class RegisterComponent implements OnInit {
       reader.readAsDataURL(event.target.files[0]); // read file as data url
 
       reader.onload = (event) => { // called once readAsDataURL is completed
-        this.url = event.target.result;
+        //this.url = event.target.result;
       }
     }
   }
   
-
   ngOnInit() {
   }
 
