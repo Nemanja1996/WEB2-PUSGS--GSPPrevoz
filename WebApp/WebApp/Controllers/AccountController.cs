@@ -98,6 +98,71 @@ namespace WebApp.Controllers
 
         }
 
+        [HttpPost]
+        [HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
+        [ResponseType(typeof(bool))]
+        [Route("EditAdminInfo")]
+        public IHttpActionResult EditAdminInfo(RegisterBindingModel model)
+        {
+            // izvuci trenutnog korisnika preko ID-a
+            ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext()
+                                    .GetUserManager<ApplicationUserManager>()
+                                    .FindById(User.Identity.GetUserId());
+
+            user.FirstName = model.FirstName;
+            user.LastName = model.LastName;
+            user.Address = model.Address;
+            user.BirthDate = model.BirthDate;
+            user.Email = model.Email;
+            user.PhoneNumber = model.PhoneNumber;
+            //user.ImageUrl = model.ImageUrl;
+
+            IdentityResult result = UserManager.Update(user);
+
+            if (!result.Succeeded)
+            {
+                return Ok(false);
+            }
+            else
+            {
+                return Ok(true);
+            }
+            
+
+        }
+
+        [HttpPost]
+        [HostAuthentication(DefaultAuthenticationTypes.ExternalBearer)]
+        [ResponseType(typeof(bool))]
+        [Route("EditUserInfo")]
+        public IHttpActionResult EditUserInfo(RegisterBindingModel model)
+        {
+
+            // izvuci trenutnog korisnika preko ID-a
+            ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext()
+                                    .GetUserManager<ApplicationUserManager>()
+                                    .FindById(User.Identity.GetUserId());
+
+            user.FirstName = model.FirstName;
+            user.LastName = model.LastName;
+            user.Address = model.Address;
+            user.BirthDate = model.BirthDate;
+            user.Email = model.Email;
+            user.PhoneNumber = model.PhoneNumber;
+            //user.ImageUrl = model.ImageUrl;
+
+            IdentityResult result = UserManager.Update(user);
+
+            if (!result.Succeeded)
+            {
+                return Ok(false);
+            }
+            else
+            {
+                return Ok(true);
+            }
+        }
+
 
 
         // GET api/Account/UserProfile
@@ -108,7 +173,7 @@ namespace WebApp.Controllers
         {
             string username = Request.GetOwinContext().Authentication.User.Identity.Name;
 
-            //ApplicationUser user = 
+            
 
             return Ok();
         }
