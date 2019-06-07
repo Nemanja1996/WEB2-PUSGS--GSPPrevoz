@@ -115,7 +115,7 @@ namespace WebApp.Controllers
             user.BirthDate = model.BirthDate;
             user.Email = model.Email;
             user.PhoneNumber = model.PhoneNumber;
-            user.ImageUrl = model.ImageUrl;
+            //user.ImageUrl = model.ImageUrl;
 
             IdentityResult result = UserManager.Update(user);
 
@@ -149,7 +149,7 @@ namespace WebApp.Controllers
             user.BirthDate = model.BirthDate;
             user.Email = model.Email;
             user.PhoneNumber = model.PhoneNumber;
-            user.ImageUrl = model.ImageUrl;
+            //user.ImageUrl = model.ImageUrl;
 
             IdentityResult result = UserManager.Update(user);
 

@@ -23,7 +23,7 @@ export class RegisterComponent implements OnInit {
     phone: ['', Validators.required],
     birthdate: ['', Validators.required],
     passengerType: ['', Validators.required],
-    ImageUpload: [''],
+    ImageUrl: [''],
     password: ['', Validators.required], 
     confirmPassword: ['', Validators.required],
   }, {
@@ -45,15 +45,26 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  onSelectFile(event) {
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
-
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
-
-      reader.onload = (event) => { // called once readAsDataURL is completed
-        //this.url = event.target.result;
-      }
+  public imagePath;
+  imgURL: any;
+  public msg: string;
+ 
+  preview(files) {
+    if (files.length === 0)
+      return;
+ 
+    var mimeType = files[0].type;
+    if (mimeType.match(/image\/*/) == null) {
+      this.msg = "Only images are supported.";
+      return;
+    }
+ 
+    var reader = new FileReader();
+    this.imagePath = files;
+    reader.readAsDataURL(files[0]); 
+    reader.onload = (_event) => { 
+      console.log(reader);
+      this.imgURL = reader.result; 
     }
   }
   
