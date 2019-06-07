@@ -1,63 +1,64 @@
 <h4>Profil</h4>
 <div class="profile-form" style="width: 400px;">
-<form>
+<form [formGroup]="updateForm" (ngSubmit)="updateInfo()">
     <div class="form-group row">
       <label for="firstName" class="col-sm-2 col-form-label">Ime</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" value="{{ userProfileInfo.FirstName }}" id="firstName"> 
+        <input type="text" class="form-control" formControlName="firstName" id="firstName"> 
       </div>
     </div>
     <div class="form-group row">
         <label for="lastName" class="col-sm-2 col-form-label">Prezime</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" value="{{ userProfileInfo.LastName }}" id="lastName"> 
+          <input type="text" class="form-control" formControlName="lastName" id="lastName"> 
         </div>
     </div>
     <div class="form-group row">
       <label for="Email" class="col-sm-2 col-form-label">Email</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" value="{{ userProfileInfo.Email }}" id="Email">
+        <input type="text" class="form-control"formControlName="email" id="Email">
       </div>
     </div>
     <div class="form-group row">
         <label for="phone" class="col-sm-2 col-form-label">Telefon</label>
         <div class="col-sm-10">
-          <input type="tel" class="form-control" value="{{ userProfileInfo.PhoneNumber }}" id="phone"> 
+          <input type="tel" class="form-control" formControlName="phoneNumber" id="phone"> 
         </div>
     </div>
     <div class="form-group row">
         <label for="birth" class="col-sm-2 col-form-label">Datum rodjenja</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" value="{{ userProfileInfo.BirthDate }}" id="birth"> 
+          <input type="text" class="form-control" formControlName="birthdate" id="birth"> 
         </div>
     </div>
     <div class="form-group row">
         <label for="address" class="col-sm-2 col-form-label">Adresa</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" value="{{ userProfileInfo.Address }}" id="address"> 
+          <input type="text" class="form-control" formControlName="address" id="address"> 
         </div>
     </div>
     <div class="form-group row">
         <label for="passengerType" class="col-sm-2 col-form-label">Tip putnika</label>
         <div class="col-sm-10">
-          <input readonly type="text" class="form-control" value="{{ userProfileInfo.PassengerTypeId }}" id="passengerType"> 
+          <input readonly type="text" class="form-control" formControlName="passengerType" id="passengerType"> 
         </div>
     </div>
     <div class="form-group row">
         <label for="approved" class="col-sm-2 col-form-label">Status</label>
         <div class="col-sm-10">
-          <input readonly type="text" class="form-control" value="{{ userProfileInfo.Approved }}" id="approved"> 
+          <input readonly type="text" class="form-control" formControlName="verificationStatus" id="approved"> 
         </div>
     </div>
     <div class="form-group row">
         <label for="image" class="col-sm-2 col-form-label">Dokument</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" value="{{ userProfileInfo.ImageUrl }}" id="image"> 
+          <input type="text" class="form-control" formControlName="imageUrl" id="image"> 
         </div>
     </div>
     <div class="col-sm-10">
         <button type="submit" class="btn btn-secondary">Izmeni</button>
-        <!-- <a href="/" class="btn btn-secondary"></a> -->
+        <br>
+        {{message}}
     </div>
   </form>
 </div>

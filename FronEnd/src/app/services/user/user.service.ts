@@ -14,3 +14,11 @@ export class RegisterApplicationUserHttpService extends BaseHttpService<Applicat
 export class UserProfileHttpService extends BaseHttpService<ApplicationUser> {
     specificUrl = "/api/Account/RegularUserInfo"
 }
+
+export class EditAdminProfileHttpService extends BaseHttpService<ApplicationUser> {
+    specificUrl = "/api/Account/EditAdminInfo"
+}
+
+export class EditUserProfileService extends BaseHttpService<ApplicationUser> {
+    specificUrl = "/api/Account/EditUserInfo"
+}

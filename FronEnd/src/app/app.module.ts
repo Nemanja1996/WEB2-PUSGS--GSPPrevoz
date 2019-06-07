@@ -36,7 +36,7 @@ import { ChangeScheduleComponent } from './components/change-schedule/change-sch
 import { AdminProfileComponent } from './components/admin-profile/admin-profile.component';
 import { AddStationComponent } from './components/add-station/add-station.component';
 import { StationsComponent } from './components/stations/stations.component';
-import { ApplicationUserHttpService, RegisterApplicationUserHttpService, UserProfileHttpService } from './services/user/user.service';
+import { ApplicationUserHttpService, RegisterApplicationUserHttpService, UserProfileHttpService, EditAdminProfileHttpService, EditUserProfileService } from './services/user/user.service';
 import { AgmCoreModule } from '@agm/core';
 import { UserNavBarComponent } from './components/user-nav-bar/user-nav-bar.component';
 import { UserHeaderComponent } from './components/user-header/user-header.component';
@@ -131,7 +131,7 @@ const routes: Routes = [
     FormsModule,
     AgmCoreModule.forRoot({apiKey: 'AIzaSyDnihJyw_34z5S1KZXp90pfTGAqhFszNJk'})
   ],
-    providers: [{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }, AuthService, ScheduleHttpService, CatalogueHttpService, DepartureHttpService, TimeTicketHttpService, AddScheduleHttpService, ChangeScheduleHttpService, DeleteScheduleHttpService, ApplicationUserHttpService, RegisterApplicationUserHttpService, GetAllStationsHttpService, AddStationHttpService, UserProfileHttpService],
+    providers: [{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }, AuthService, ScheduleHttpService, CatalogueHttpService, DepartureHttpService, TimeTicketHttpService, AddScheduleHttpService, ChangeScheduleHttpService, DeleteScheduleHttpService, ApplicationUserHttpService, RegisterApplicationUserHttpService, GetAllStationsHttpService, AddStationHttpService, UserProfileHttpService, EditAdminProfileHttpService, EditUserProfileService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
