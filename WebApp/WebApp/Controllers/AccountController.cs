@@ -434,6 +434,7 @@ namespace WebApp.Controllers
         [HttpPost]
         [AllowAnonymous]
         [Route("Register")]
+        [ResponseType(typeof(bool))]
         public async Task<IHttpActionResult> Register(RegisterBindingModel model)
         {
             if (!ModelState.IsValid)
@@ -450,16 +451,16 @@ namespace WebApp.Controllers
 
             if (!result.Succeeded)
             {
-                return GetErrorResult(result);
+                return Ok(false);
             }
             
             result = await UserManager.AddToRoleAsync(user.Id, "AppUser");
             if (!result.Succeeded)
             {
-                return GetErrorResult(result);
+                return Ok(false);
             }
 
-            return Ok();
+            return Ok(true);
 
         }
 

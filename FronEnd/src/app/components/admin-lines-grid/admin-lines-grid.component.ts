@@ -9,7 +9,7 @@ import { Line } from 'src/app/models/Line';
   selector: 'app-admin-lines-grid',
   templateUrl: './admin-lines-grid.component.html',
   styleUrls: ['./admin-lines-grid.component.css'],
-  styles: ['agm-map {height: 450px; width: 650px;}']
+  styles: ['agm-map {height: 450px; width: 550px;}']
 })
 export class AdminLinesGridComponent implements OnInit {
   public zoom: number;

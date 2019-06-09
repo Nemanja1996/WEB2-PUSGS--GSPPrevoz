@@ -9,7 +9,7 @@ import { GeoLocation } from 'src/app/models/map/geolocation';
   selector: 'app-add-station',
   templateUrl: './add-station.component.html',
   styleUrls: ['./add-station.component.css'],
-  styles: ['agm-map {height: 450px; width: 650px;}']
+  styles: ['agm-map {height: 450px; width: 550px;}']
 })
 export class AddStationComponent implements OnInit {
   public zoom: number;

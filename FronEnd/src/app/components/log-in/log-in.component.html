@@ -16,6 +16,9 @@
         <div class="form-group row">
         <div class="col-sm-10">
             <button type="submit" class="btn btn-secondary" [disabled]="!loginForm.valid" *ngIf="!authService.isLoggedIn">Login</button>
+            <br>
+
+            <span style="color: red">{{message}}</span>
             <button (click)="logout()" *ngIf="authService.isLoggedIn">Logout</button>
             &nbsp;
             <!-- <button (click)="Register()" class="btn btn-secondary">Registracija</button> -->
