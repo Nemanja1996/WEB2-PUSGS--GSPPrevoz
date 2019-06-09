@@ -70,7 +70,7 @@ namespace WebApp.Models
         public string Address { get; set; }
 
       
-        [Display(Name = "PassengerType")]
+        [Display(Name = "PassengerTypeId")]
         public int PassengerTypeId { get; set; }
 
         [Display(Name = "ImageUrl")]

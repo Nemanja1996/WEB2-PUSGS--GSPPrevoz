@@ -6,3 +6,8 @@ import { Injectable } from '@angular/core';
 export class LineHttpService extends BaseHttpService<Line>{
     specificUrl = "/api/Lines"
 }
+
+@Injectable()
+export class DeleteLineHttpService extends BaseHttpService<Line> {
+    specificUrl = "api/Lines/"
+}
