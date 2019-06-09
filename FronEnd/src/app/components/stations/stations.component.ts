@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   selector: 'app-stations',
   templateUrl: './stations.component.html',
   styleUrls: ['./stations.component.css'],
-  styles: ['agm-map {height: 450px; width: 650px;}']
+  styles: ['agm-map {height: 450px; width: 550px;}']
 })
 export class StationsComponent implements OnInit {
   public zoom: number;

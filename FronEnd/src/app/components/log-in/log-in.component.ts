@@ -21,7 +21,7 @@ export class LogInComponent implements OnInit {
   }
 
   setMessage() {
-    this.message = 'Logged ' + (this.authService.isLoggedIn ? 'in' : 'out');
+    //this.message = 'Logged ' + (this.authService.isLoggedIn ? 'in' : 'out');
   }
 
   login() {
@@ -34,6 +34,7 @@ export class LogInComponent implements OnInit {
         }
         else{
           this.router.navigate(["unauthorizedUser", "logIn"]);
+          this.message = "Pogresan email ili loznika";
         }
     });
   }
