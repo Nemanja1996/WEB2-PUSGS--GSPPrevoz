@@ -1,3 +1,47 @@
+<div class="row">
+  <div class="col-sm-6">
 <p>
-  add-line works!
+<!-- Kreiramo mapu -->
+<agm-map [latitude]="45.242268" [longitude]="19.842954" [zoom]="18">  
+
+  <agm-marker *ngFor="let station of stations" (markerClick)="addStation(station)" [latitude]="station.Latitude" [longitude]="station.Longitude" [iconUrl]="imageUrl">
+  </agm-marker>
+  <agm-polyline [strokeColor]="blue">
+    <agm-polyline-point *ngFor="let station of stationsArray" [latitude]="station.Latitude" [longitude]="station.Longitude">
+    </agm-polyline-point>
+  </agm-polyline>
+</agm-map>
 </p>
+</div>
+<div class="col-sm-6">
+            <br>Naziv
+            <div class="col-sm-6">
+                <input type="text" [(ngModel)]="lineName" class="form-control">
+            </div>
+
+            <br>Broj
+            <div class="col-sm-6">
+                <input type="text" [(ngModel)]="lineNumber" class="form-control">
+            </div>
+
+                <br>Tip linije:
+                <div class="col-sm-6">
+                    <select [(ngModel)]="selectedLineType" class="form-control">
+                      <option *ngFor="let lineType of lineTypes" [ngValue] = "lineType">
+                        {{lineType.Name}}
+                      </option>
+                    </select>
+                </div>
+          <br><br>
+          <div class="col-sm-6">
+            <button class="btn btn-secondary" [disabled]="stationsArray.length < 2 || selectedLineType==null || lineNumber==null || lineNumber=='' || lineName==null || lineName==''" (click) = "addLine()">Dodaj</button>
+            <button class="btn btn-secondary" (click)="otkazi()">Otkazi</button>
+            &nbsp;
+          </div>
+          <br>
+          <div class="col-sm-6"></div>
+          <button class="btn btn-secondary" (click)="restartRoute()">Ponovi rutu</button>
+          &nbsp;
+        </div>
+    {{message}}
+</div>

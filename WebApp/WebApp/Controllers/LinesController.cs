@@ -77,18 +77,23 @@ namespace WebApp.Controllers
         }
 
         // POST: api/Lines
-        [ResponseType(typeof(Line))]
+        [ResponseType(typeof(bool))]
         public IHttpActionResult PostLine(Line line)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return Ok(false);
             }
-
+            List<Station> stations = new List<Station>();
+            foreach (var item in line.Stations)
+            {
+                stations.Add(db.Stations.Get(item.Id));
+            }
+            line.Stations = stations;
             db.Lines.Add(line);
             db.Complete();
 
-            return CreatedAtRoute("DefaultApi", new { id = line.Id }, line);
+            return Ok(true);
         }
 
         // DELETE: api/Lines/5
