@@ -18,6 +18,7 @@ export class DeleteLineComponent implements OnInit {
   lines: Array<Line> = [];
   stationsArray: Station[] = [];
   selectedLine: Line = null;
+  message: string;
 
   constructor(private ngZone: NgZone, private httpStation: GetAllStationsHttpService, private router: Router, private httpLines: LineHttpService) { }
 
@@ -32,13 +33,26 @@ export class DeleteLineComponent implements OnInit {
     });
   }
 
-  showLine(){
+  selectionChanged() {
     this.stationsArray = this.selectedLine.Stations;
     console.log(this.stationsArray);
   }
 
-  // deleteLine() {
-  //   this.httpLines.delete()
+  // showLine(){
+  //   this.stationsArray = this.selectedLine.Stations;
+  //   console.log(this.stationsArray);
   // }
+
+  deleteLine() {
+    this.httpLines.delete(this.selectedLine.Id).subscribe((data) => {
+      if (data) {
+        this.message = "Uspesno ste obrisali selektovanu liniju.";
+        this.selectedLine = null;
+      }
+      else {
+        this.message = "Greska prilikom brisanja zadate linije.";
+      }
+    });
+  }
 
 }

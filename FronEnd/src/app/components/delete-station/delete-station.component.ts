@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   selector: 'app-delete-station',
   templateUrl: './delete-station.component.html',
   styleUrls: ['./delete-station.component.css'],
-  styles: ['agm-map {height: 450px; width: 650px;}']
+  styles: ['agm-map {height: 450px; width: 550px;}']
 })
 export class DeleteStationComponent implements OnInit {
   public zoom: number;

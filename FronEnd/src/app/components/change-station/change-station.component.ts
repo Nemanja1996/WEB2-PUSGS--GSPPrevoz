@@ -10,7 +10,7 @@ import { Validators, FormBuilder } from '@angular/forms';
   selector: 'app-change-station',
   templateUrl: './change-station.component.html',
   styleUrls: ['./change-station.component.css'],
-  styles: ['agm-map {height: 450px; width: 650px;}']
+  styles: ['agm-map {height: 450px; width: 550px;}']
 })
 export class ChangeStationComponent implements OnInit {
   public zoom: number;

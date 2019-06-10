@@ -11,7 +11,7 @@ import { LineType } from 'src/app/models/LineType';
   selector: 'app-add-line',
   templateUrl: './add-line.component.html',
   styleUrls: ['./add-line.component.css'],
-  styles: ['agm-map {height: 450px; width: 650px;}']
+  styles: ['agm-map {height: 450px; width: 550px;}']
 })
 export class AddLineComponent implements OnInit {
 

@@ -28,12 +28,14 @@
   </div>
   <div class="col-sm-6">
       Odabir linije<br>
-      <select class="form-control" style="width: 20%;" [(ngModel)]="selectedLine">
+      <select class="form-control" (change)="selectionChanged()" style="width: 20%;" [(ngModel)]="selectedLine">
         <option *ngFor="let line of lines" [ngValue]="line">
           {{line.Name}}
         </option>
       </select>
       <br>
       <button class="btn btn-secondary" (click)="deleteLine()" [disabled]="selectedLine==null">Obrisi</button>
+      <br>
+      {{message}}
   </div>
 </div>
