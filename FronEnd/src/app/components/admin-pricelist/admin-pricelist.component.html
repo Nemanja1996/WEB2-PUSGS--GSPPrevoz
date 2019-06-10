@@ -1,3 +1,35 @@
-<p>
-  admin-pricelist works!
-</p>
+<div class="row">
+  <div class="col-sm-6">
+      Odabir datuma cenovnika<br>
+      <select class="form-control" style="width: 20%;" [(ngModel)]="selectedCatalogue">
+        <option *ngFor="let catalogue of Catalogues" [ngValue]="catalogue">
+          <div *ngIf="catalogue.ValidTo != null">
+            {{catalogue.ValidTo | date : "fullDate"}}
+          </div>
+          <div *ngIf="catalogue.ValidTo == null">
+              Vazeci red voznje
+            </div>
+        </option>
+      </select>
+
+      <br>
+    <button class="btn btn-secondary" (click)="showCatalogue()" [disabled]="selectedCatalogue==null">Prikazi</button>
+  </div>
+</div>
+
+<table class="table" style="width: 60%;" border="1px" solid #dddddd>
+    <thead class="thead-dark">
+    <tr>
+      <th scope="col"></th>
+      <th scope="col" *ngFor="let ticketType of catalogueInfo.TicketTypes">{{ticketType.Name}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let pasengerType of catalogueInfo.PassengerTypes">
+        <th scope="row">{{pasengerType.Name}}</th>
+        <ng-container *ngFor="let price of catalogueInfo.TicketPrices">
+          <td *ngIf="pasengerType.Name === price.PassType">{{price.DiscountPrice}}</td>
+        </ng-container>
+      </tr>
+    </tbody>
+    </table>

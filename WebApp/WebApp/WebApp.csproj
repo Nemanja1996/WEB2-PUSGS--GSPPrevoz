@@ -315,6 +315,14 @@
     <Compile Include="Migrations\201906061255565_ApplicationUsersUpdateMigration.Designer.cs">
       <DependentUpon>201906061255565_ApplicationUsersUpdateMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906101353306_CatalogueChange.cs" />
+    <Compile Include="Migrations\201906101353306_CatalogueChange.Designer.cs">
+      <DependentUpon>201906101353306_CatalogueChange.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906101354553_CatalogueChange1.cs" />
+    <Compile Include="Migrations\201906101354553_CatalogueChange1.Designer.cs">
+      <DependentUpon>201906101354553_CatalogueChange1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -500,6 +508,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906061255565_ApplicationUsersUpdateMigration.resx">
       <DependentUpon>201906061255565_ApplicationUsersUpdateMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906101353306_CatalogueChange.resx">
+      <DependentUpon>201906101353306_CatalogueChange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906101354553_CatalogueChange1.resx">
+      <DependentUpon>201906101354553_CatalogueChange1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

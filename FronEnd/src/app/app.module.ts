@@ -18,7 +18,7 @@ import { LinesGridComponent } from './components/lines-grid/lines-grid.component
 import { VehicleLocationComponent } from './components/vehicle-location/vehicle-location.component';
 import { PriceListComponent } from './components/price-list/price-list.component';
 import { ScheduleHttpService, AddScheduleHttpService, ChangeScheduleHttpService, DeleteScheduleHttpService } from './services/schedule/schedule.service';
-import { CatalogueHttpService } from './services/catalogue/catalogue.service';
+import { CatalogueHttpService, GetCatalogueHttpService } from './services/catalogue/catalogue.service';
 import { DepartureHttpService } from './services/schedule/departure.service';
 import { AdminComponent } from './components/admin/admin.component';
 import { AdminHeaderComponent } from './components/admin-header/admin-header.component';
@@ -141,7 +141,7 @@ const routes: Routes = [
     FormsModule,
     AgmCoreModule.forRoot({apiKey: 'AIzaSyDnihJyw_34z5S1KZXp90pfTGAqhFszNJk'})
   ],
-    providers: [{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }, AuthService, ScheduleHttpService, CatalogueHttpService, DepartureHttpService, TimeTicketHttpService, AddScheduleHttpService, ChangeScheduleHttpService, DeleteScheduleHttpService, ApplicationUserHttpService, RegisterApplicationUserHttpService, GetAllStationsHttpService, AddStationHttpService, UserProfileHttpService, ChangeStationHttpService, DeleteStationHttpService, EditAdminProfileHttpService, EditUserProfileService, LineHttpService, LineTypeService],
+    providers: [{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }, AuthService, ScheduleHttpService, CatalogueHttpService, DepartureHttpService, TimeTicketHttpService, AddScheduleHttpService, ChangeScheduleHttpService, DeleteScheduleHttpService, ApplicationUserHttpService, RegisterApplicationUserHttpService, GetAllStationsHttpService, AddStationHttpService, UserProfileHttpService, ChangeStationHttpService, DeleteStationHttpService, EditAdminProfileHttpService, EditUserProfileService, LineHttpService, LineTypeService, GetCatalogueHttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

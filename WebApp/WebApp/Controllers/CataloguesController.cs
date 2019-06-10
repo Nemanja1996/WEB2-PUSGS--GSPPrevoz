@@ -115,7 +115,7 @@ namespace WebApp.Controllers
         {
             List<TicketType> ticketTypes = db.TicketTypes.GetAll().ToList();
             List<PassengerType> passengertypes = db.PassengerTypes.GetAll().ToList();
-            Catalogue catalogue = db.Catalogues.Find(x => x.ValidFrom < DateTime.Now && x.ValidTo > DateTime.Now).FirstOrDefault();
+            Catalogue catalogue = db.Catalogues.Find(x => x.ValidTo == null).FirstOrDefault();
             List<CatalogueHistory> cataloguesHistories = db.CatalogueHistory.Find(x => x.CatalogueID == catalogue.Id).ToList();
 
             List<TicketPrice> ticketPrices = new List<TicketPrice>(4);
