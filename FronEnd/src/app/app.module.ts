@@ -48,7 +48,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { AddLineComponent } from './components/add-line/add-line.component';
 import { ChangeLineComponent } from './components/change-line/change-line.component';
 import { DeleteLineComponent } from './components/delete-line/delete-line.component';
-import { LineHttpService } from './services/lines/line.service';
+import { LineHttpService, LineTypeService } from './services/lines/line.service';
 
 const childrenRoutes : Routes = [
   {path: "logIn", component: LogInComponent},
@@ -141,7 +141,7 @@ const routes: Routes = [
     FormsModule,
     AgmCoreModule.forRoot({apiKey: 'AIzaSyDnihJyw_34z5S1KZXp90pfTGAqhFszNJk'})
   ],
-    providers: [{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }, AuthService, ScheduleHttpService, CatalogueHttpService, DepartureHttpService, TimeTicketHttpService, AddScheduleHttpService, ChangeScheduleHttpService, DeleteScheduleHttpService, ApplicationUserHttpService, RegisterApplicationUserHttpService, GetAllStationsHttpService, AddStationHttpService, UserProfileHttpService, ChangeStationHttpService, DeleteStationHttpService, EditAdminProfileHttpService, EditUserProfileService, LineHttpService],
+    providers: [{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }, AuthService, ScheduleHttpService, CatalogueHttpService, DepartureHttpService, TimeTicketHttpService, AddScheduleHttpService, ChangeScheduleHttpService, DeleteScheduleHttpService, ApplicationUserHttpService, RegisterApplicationUserHttpService, GetAllStationsHttpService, AddStationHttpService, UserProfileHttpService, ChangeStationHttpService, DeleteStationHttpService, EditAdminProfileHttpService, EditUserProfileService, LineHttpService, LineTypeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
