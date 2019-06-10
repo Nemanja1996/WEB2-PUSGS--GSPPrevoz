@@ -442,7 +442,7 @@ namespace WebApp.Controllers
                 return BadRequest(ModelState);
             }
 
-            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, BirthDate = model.BirthDate, Address = model.Address,  PhoneNumber = model.PhoneNumber};
+            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, BirthDate = model.BirthDate, Address = model.Address,  PhoneNumber = model.PhoneNumber, PassengerTypeId = model.PassengerTypeId};
 
             //user.PasswordHash = ApplicationUser.HashPassword(model.Password);
             //UserManager.Create(user);

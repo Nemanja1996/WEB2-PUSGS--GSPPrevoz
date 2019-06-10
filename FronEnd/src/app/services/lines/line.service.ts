@@ -7,8 +7,7 @@ import { LineType } from 'src/app/models/LineType';
 export class LineHttpService extends BaseHttpService<Line>{
     specificUrl = "/api/Lines"
 }
-
-@Injectable()
+	
 export class LineTypeService extends BaseHttpService<LineType>{
     specificUrl = "/api/LineTypes"
 }

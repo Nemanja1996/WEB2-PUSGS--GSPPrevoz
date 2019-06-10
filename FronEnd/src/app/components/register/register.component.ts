@@ -22,7 +22,7 @@ export class RegisterComponent implements OnInit {
     email: ['', Validators.required], 
     phoneNumber: ['', Validators.required],
     birthdate: ['', Validators.required],
-    passengerType: ['', Validators.required],
+    passengerTypeId: ['', Validators.required],
     ImageUrl: [''],
     password: ['', Validators.required], 
     confirmPassword: ['', Validators.required],
