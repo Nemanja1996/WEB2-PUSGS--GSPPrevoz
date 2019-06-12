@@ -11,6 +11,11 @@ namespace WebApp.Persistence.Repository
     {
         public CatalogueHistoryRepository(DbContext context) : base(context)
         {
+
+        }
+        public new IEnumerable<CatalogueHistory> GetAll()
+        {
+            return context.Set<CatalogueHistory>().Include("TicketType").ToList();
         }
     }
 }

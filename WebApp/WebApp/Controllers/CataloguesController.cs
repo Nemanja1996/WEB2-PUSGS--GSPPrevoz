@@ -79,18 +79,46 @@ namespace WebApp.Controllers
         }
 
         // POST: api/Catalogues
-        [ResponseType(typeof(Catalogue))]
+        [ResponseType(typeof(bool))]
         public IHttpActionResult PostCatalogue(Catalogue catalogue)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return Ok(false);
             }
-
+            Catalogue catalogue1 = db.Catalogues.Find(x => x.ValidTo == null).FirstOrDefault();
+            catalogue1.ValidTo = catalogue.ValidFrom;
             db.Catalogues.Add(catalogue);
             db.Complete();
 
-            return CreatedAtRoute("DefaultApi", new { id = catalogue.Id }, catalogue);
+            return Ok(true);
+        }
+
+        [ResponseType(typeof(bool))]
+        [Route("api/Catalogues/CatalogueAndCatalogueHistory")]
+        public IHttpActionResult PostCatalogueAndCatalogueHistory(CatalogueBindingModel catalogueInfo)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Ok(false);
+            }
+            Catalogue catalogue1 = db.Catalogues.Find(x => x.ValidTo == null).FirstOrDefault();
+            catalogue1.ValidTo = catalogueInfo.Catalogue.ValidFrom;
+
+            db.Catalogues.Add(catalogueInfo.Catalogue);
+            db.Complete();
+
+            catalogue1 = db.Catalogues.Find(x => x.ValidTo == null).FirstOrDefault();
+
+            CatalogueHistory catalogue;
+            foreach (var item in catalogueInfo.CatalogueHistories)
+            {
+                catalogue = new CatalogueHistory() { TicketPrice = item.TicketPrice, CatalogueID = catalogue1.Id, TicketTypeID = item.TicketTypeID };
+                db.CatalogueHistory.Add(catalogue);
+            }
+            db.Complete();
+
+            return Ok(true);
         }
 
         // DELETE: api/Catalogues/5
@@ -115,7 +143,7 @@ namespace WebApp.Controllers
         {
             List<TicketType> ticketTypes = db.TicketTypes.GetAll().ToList();
             List<PassengerType> passengertypes = db.PassengerTypes.GetAll().ToList();
-            Catalogue catalogue = db.Catalogues.Find(x => x.ValidTo == null).FirstOrDefault();
+            Catalogue catalogue = db.Catalogues.Find(x => x.ValidTo == null || x.ValidTo > DateTime.Now).FirstOrDefault();
             List<CatalogueHistory> cataloguesHistories = db.CatalogueHistory.Find(x => x.CatalogueID == catalogue.Id).ToList();
 
             List<TicketPrice> ticketPrices = new List<TicketPrice>(4);
@@ -128,6 +156,29 @@ namespace WebApp.Controllers
             }
 
             CatalogueInfoBindingModel c = new CatalogueInfoBindingModel() { TicketTypes = ticketTypes, PassengerTypes = passengertypes, TicketPrices = ticketPrices};
+
+            return Ok(c);
+        }
+
+        [ResponseType(typeof(CatalogueInfoBindingModel))]
+        [Route("api/Catalogues/CatalogueInfo/{id}")]
+        public IHttpActionResult GetCatalogueInfo(int id)
+        {
+            List<TicketType> ticketTypes = db.TicketTypes.GetAll().ToList();
+            List<PassengerType> passengertypes = db.PassengerTypes.GetAll().ToList();
+            Catalogue catalogue = db.Catalogues.Get(id);
+            List<CatalogueHistory> cataloguesHistories = db.CatalogueHistory.Find(x => x.CatalogueID == catalogue.Id).ToList();
+
+            List<TicketPrice> ticketPrices = new List<TicketPrice>(4);
+            foreach (var item in cataloguesHistories)
+            {
+                foreach (var item1 in passengertypes)
+                {
+                    ticketPrices.Add(new TicketPrice() { OriginalPrice = item.TicketPrice, DiscountPrice = item.TicketPrice - item.TicketPrice * (item1.Discount / 100), PassType = item1.Name });
+                }
+            }
+
+            CatalogueInfoBindingModel c = new CatalogueInfoBindingModel() { TicketTypes = ticketTypes, PassengerTypes = passengertypes, TicketPrices = ticketPrices };
 
             return Ok(c);
         }

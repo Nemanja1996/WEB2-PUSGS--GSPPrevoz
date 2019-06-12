@@ -1,0 +1,24 @@
+<p>Unesite vreme vazenja cenovnika:</p>
+<div class="form-group row">
+  <br>
+  <div class="col-sm-3">
+      <input [(ngModel)]="validFrom" type="date" class="form-control">
+  </div>
+</div>
+
+<p>Uneti nove cene:</p>
+<br>
+<table class="table" style="width: 20%" border="1px" solid #dddddd>
+  <thead class="thead-dark">
+    <tr *ngFor="let catalogueHistory of catalogueHistories">
+      <th scope="col">{{catalogueHistory.TicketType.Name}}</th>
+      <td><input type="number"  [(ngModel)]="catalogueHistory.TicketPrice"></td>
+    </tr>
+  </thead>
+</table>
+
+<br><br>
+
+<button class="btn btn-secondary" (click)="addCatalogue(catalogueHistories)" [disabled]="validFrom == null">Dodaj cenovnik</button>
+<br>
+{{message}}

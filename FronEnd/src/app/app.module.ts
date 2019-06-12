@@ -18,7 +18,7 @@ import { LinesGridComponent } from './components/lines-grid/lines-grid.component
 import { VehicleLocationComponent } from './components/vehicle-location/vehicle-location.component';
 import { PriceListComponent } from './components/price-list/price-list.component';
 import { ScheduleHttpService, AddScheduleHttpService, ChangeScheduleHttpService, DeleteScheduleHttpService } from './services/schedule/schedule.service';
-import { CatalogueHttpService, GetCatalogueHttpService } from './services/catalogue/catalogue.service';
+import { CatalogueHttpService, GetCatalogueHttpService, PostCatalogueHttpService } from './services/catalogue/catalogue.service';
 import { DepartureHttpService } from './services/schedule/departure.service';
 import { AdminComponent } from './components/admin/admin.component';
 import { AdminHeaderComponent } from './components/admin-header/admin-header.component';
@@ -49,6 +49,8 @@ import { AddLineComponent } from './components/add-line/add-line.component';
 import { ChangeLineComponent } from './components/change-line/change-line.component';
 import { DeleteLineComponent } from './components/delete-line/delete-line.component';
 import { LineHttpService, LineTypeService } from './services/lines/line.service';
+import { AddCatalogueComponent } from './components/add-catalogue/add-catalogue.component';
+import { GetValidCatagoues, PostValidCatagoues } from './services/catalogue/catalogue.history.service';
 
 const childrenRoutes : Routes = [
   {path: "logIn", component: LogInComponent},
@@ -76,7 +78,8 @@ const childrenRoutesAdmin : Routes = [
   {path: "changeStation", component: ChangeStationComponent},
   {path: "addLine", component: AddLineComponent},
   {path: "changeLine", component: ChangeLineComponent},
-  {path: "deleteLine", component: DeleteLineComponent}
+  {path: "deleteLine", component: DeleteLineComponent},
+  {path: "addCatalogue", component: AddCatalogueComponent}
 ]
 
 const childrenRoutesUser : Routes = [
@@ -131,7 +134,8 @@ const routes: Routes = [
     UserProfileComponent,
     AddLineComponent,
     ChangeLineComponent,
-    DeleteLineComponent
+    DeleteLineComponent,
+    AddCatalogueComponent
   ],
   imports: [
     BrowserModule,
@@ -141,7 +145,7 @@ const routes: Routes = [
     FormsModule,
     AgmCoreModule.forRoot({apiKey: 'AIzaSyDnihJyw_34z5S1KZXp90pfTGAqhFszNJk'})
   ],
-    providers: [{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }, AuthService, ScheduleHttpService, CatalogueHttpService, DepartureHttpService, TimeTicketHttpService, AddScheduleHttpService, ChangeScheduleHttpService, DeleteScheduleHttpService, ApplicationUserHttpService, RegisterApplicationUserHttpService, GetAllStationsHttpService, AddStationHttpService, UserProfileHttpService, ChangeStationHttpService, DeleteStationHttpService, EditAdminProfileHttpService, EditUserProfileService, LineHttpService, LineTypeService, GetCatalogueHttpService],
+    providers: [{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }, AuthService, ScheduleHttpService, CatalogueHttpService, DepartureHttpService, TimeTicketHttpService, AddScheduleHttpService, ChangeScheduleHttpService, DeleteScheduleHttpService, ApplicationUserHttpService, RegisterApplicationUserHttpService, GetAllStationsHttpService, AddStationHttpService, UserProfileHttpService, ChangeStationHttpService, DeleteStationHttpService, EditAdminProfileHttpService, EditUserProfileService, LineHttpService, LineTypeService, GetCatalogueHttpService, GetValidCatagoues, PostCatalogueHttpService, PostValidCatagoues],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

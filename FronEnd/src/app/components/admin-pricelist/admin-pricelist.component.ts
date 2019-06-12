@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Catalogue } from 'src/app/models/Catalogue';
 import { GetCatalogueHttpService, CatalogueHttpService } from 'src/app/services/catalogue/catalogue.service';
 import { CatalogueInfo } from 'src/app/models/CatalogueInfo';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-pricelist',
@@ -11,24 +12,27 @@ import { CatalogueInfo } from 'src/app/models/CatalogueInfo';
 export class AdminPricelistComponent implements OnInit {
 
   Catalogues: Catalogue[] = []
-  catalogueInfo:CatalogueInfo = new CatalogueInfo;
+  catalogueInfo:CatalogueInfo = null;
   selectedCatalogue: Catalogue = null;
 
 
-  constructor(private httpCatalogue: GetCatalogueHttpService, private http: CatalogueHttpService) { }
+  constructor(private httpCatalogue: GetCatalogueHttpService, private http: CatalogueHttpService, private router: Router) { }
 
   ngOnInit() {
     this.httpCatalogue.getAll().subscribe((data)=>{
       this.Catalogues = data;
     });
-    this.http.getAll().subscribe((catalogueInfo) => {
+  }
+
+  showCatalogue(){
+    this.http.getById(this.selectedCatalogue.Id).subscribe((catalogueInfo) => {
       this.catalogueInfo = catalogueInfo;
       console.log(catalogueInfo);
       err => console.log(err);
     });
   }
 
-  showCatalogue(){
-
+  addCatalogue(){
+    this.router.navigate(["admin", "addCatalogue"]);
   }
 }

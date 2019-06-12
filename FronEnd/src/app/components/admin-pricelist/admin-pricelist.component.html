@@ -14,10 +14,13 @@
 
       <br>
     <button class="btn btn-secondary" (click)="showCatalogue()" [disabled]="selectedCatalogue==null">Prikazi</button>
+    <button class="btn btn-secondary" (click)="addCatalogue()">Dodaj cenovnik</button>
   </div>
 </div>
 
-<table class="table" style="width: 60%;" border="1px" solid #dddddd>
+<br><br>
+
+<table class="table" *ngIf="catalogueInfo != null" style="width: 60%;" border="1px" solid #dddddd>
     <thead class="thead-dark">
     <tr>
       <th scope="col"></th>
@@ -30,6 +33,6 @@
         <ng-container *ngFor="let price of catalogueInfo.TicketPrices">
           <td *ngIf="pasengerType.Name === price.PassType">{{price.DiscountPrice}}</td>
         </ng-container>
-      </tr>
-    </tbody>
-    </table>
+    </tr>
+  </tbody>
+</table>

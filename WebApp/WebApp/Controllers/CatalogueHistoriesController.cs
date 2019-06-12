@@ -92,6 +92,24 @@ namespace WebApp.Controllers
             return CreatedAtRoute("DefaultApi", new { id = catalogueHistory.Id }, catalogueHistory);
         }
 
+        //POST: api/CatalogueHistories
+       [ResponseType(typeof(bool))]
+        public IHttpActionResult PostCatalogueHistory(List<CatalogueHistory> catalogueHistory)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Ok(false);
+            }
+            Catalogue catalogue1 = db.Catalogues.Find(x => x.ValidTo == null).FirstOrDefault();
+            foreach (var item in catalogueHistory)
+            {
+                db.CatalogueHistory.Add(new CatalogueHistory() { TicketPrice = item.TicketPrice, CatalogueID = catalogue1.Id });
+            }
+            db.Complete();
+
+            return Ok(true);
+        }
+
         // DELETE: api/CatalogueHistories/5
         [ResponseType(typeof(CatalogueHistory))]
         public IHttpActionResult DeleteCatalogueHistory(int id)
@@ -106,6 +124,13 @@ namespace WebApp.Controllers
             db.Complete();
 
             return Ok(catalogueHistory);
+        }
+
+        [Route("api/CatalogueHistories/ValidCatalogues")]
+        public IEnumerable<CatalogueHistory> GetValidCatalogues()
+        {
+            Catalogue catalogue = db.Catalogues.Find(x => x.ValidTo == null || x.ValidTo > DateTime.Now).FirstOrDefault();
+            return db.CatalogueHistory.GetAll().Where(x => x.CatalogueID == catalogue.Id);
         }
 
         protected override void Dispose(bool disposing)
