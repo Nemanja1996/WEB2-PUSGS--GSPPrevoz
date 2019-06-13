@@ -33,5 +33,8 @@ export class UserNavBarComponent implements OnInit {
   profile() {
     this.router.navigate(["user", "profile"])
   }
+  ticketReview(){
+    this.router.navigate(["user", "ticketReview"]);
+  }
 
 }

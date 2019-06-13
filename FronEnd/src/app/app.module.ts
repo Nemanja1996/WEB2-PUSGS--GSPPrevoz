@@ -57,7 +57,9 @@ import { ValidateTicketComponent } from './components/validate-ticket/validate-t
 import { ControllorNavBarComponent } from './components/controllor-nav-bar/controllor-nav-bar.component';
 import { ControllorHeaderComponent } from './components/controllor-header/controllor-header.component';
 import { ControllorProfileComponent } from './components/controllor-profile/controllor-profile.component';
-import { TicketHttpService } from './services/ticket/ticket.service';
+import { TicketHttpService, BuyTicketHttpService } from './services/ticket/ticket.service';
+import { TicketReviewComponent } from './components/ticket-review/ticket-review.component';
+import { TicketTypeHttp } from './services/ticketType/ticket.type.service';
 
 const childrenRoutes : Routes = [
   {path: "logIn", component: LogInComponent},
@@ -98,7 +100,8 @@ const childrenRoutesUser : Routes = [
   {path: "linesGrid", component: LinesGridComponent},
   {path: "vehicleLocation", component: VehicleLocationComponent},
   {path: "priceList", component: PriceListComponent},
-  {path: "buyTicket", component: BuyTicketComponent}
+  {path: "buyTicket", component: BuyTicketComponent},
+  {path: "ticketReview", component: TicketReviewComponent}
 ]
 
 const childrenRoutesControllor : Routes = [
@@ -156,7 +159,8 @@ const routes: Routes = [
     ControllorComponent,
     ControllorNavBarComponent,
     ControllorHeaderComponent,
-    ControllorProfileComponent
+    ControllorProfileComponent,
+    TicketReviewComponent
   ],
   imports: [
     BrowserModule,
@@ -166,7 +170,7 @@ const routes: Routes = [
     FormsModule,
     AgmCoreModule.forRoot({apiKey: 'AIzaSyDnihJyw_34z5S1KZXp90pfTGAqhFszNJk'})
   ],
-    providers: [{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }, AuthService, ScheduleHttpService, CatalogueHttpService, DepartureHttpService, TimeTicketHttpService, AddScheduleHttpService, ChangeScheduleHttpService, DeleteScheduleHttpService, ApplicationUserHttpService, RegisterApplicationUserHttpService, GetAllStationsHttpService, AddStationHttpService, UserProfileHttpService, ChangeStationHttpService, DeleteStationHttpService, EditAdminProfileHttpService, EditUserProfileService, LineHttpService, LineTypeService, GetCatalogueHttpService, GetValidCatagoues, PostCatalogueHttpService, PostValidCatagoues, RegisterControllorHttpService, TicketHttpService],
+    providers: [{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }, AuthService, ScheduleHttpService, CatalogueHttpService, DepartureHttpService, TimeTicketHttpService, AddScheduleHttpService, ChangeScheduleHttpService, DeleteScheduleHttpService, ApplicationUserHttpService, RegisterApplicationUserHttpService, GetAllStationsHttpService, AddStationHttpService, UserProfileHttpService, ChangeStationHttpService, DeleteStationHttpService, EditAdminProfileHttpService, EditUserProfileService, LineHttpService, LineTypeService, GetCatalogueHttpService, GetValidCatagoues, PostCatalogueHttpService, PostValidCatagoues, RegisterControllorHttpService, TicketHttpService, BuyTicketHttpService, TicketTypeHttp],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

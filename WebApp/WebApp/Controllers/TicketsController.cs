@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -7,6 +9,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Mail;
+using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
 using WebApp.Models;
@@ -83,18 +86,34 @@ namespace WebApp.Controllers
         }
 
         // POST: api/Tickets
-        [ResponseType(typeof(Ticket))]
+        [ResponseType(typeof(bool))]
         public IHttpActionResult PostTicket(Ticket ticket)
         {
-            if (!ModelState.IsValid)
+
+            ApplicationUser appUser =  HttpContext.Current.GetOwinContext()
+                                    .GetUserManager<ApplicationUserManager>()
+                                    .FindById(User.Identity.GetUserId());
+
+            if (appUser.Approved == true)
             {
-                return BadRequest(ModelState);
+                Catalogue catalogue = db.Catalogues.Find(x => x.ValidTo == null || x.ValidTo > DateTime.Now).FirstOrDefault();
+                CatalogueHistory cataloguesHistories = db.CatalogueHistory.Find(x => x.CatalogueID == catalogue.Id && x.TicketTypeID == ticket.TicketTypeID).FirstOrDefault();
+
+                ticket.ApplicationUserID = appUser.Id;
+                ticket.IsValid = true;
+                ticket.TimeIssued = DateTime.Now;
+                ticket.CatalogueHistoryID = cataloguesHistories.Id;
+                db.Tickets.Add(ticket);
+            }
+            else
+            {
+                BadRequest();
             }
 
-            db.Tickets.Add(ticket);
+            Request.GetOwinContext().GetUserManager<ApplicationUserManager>().Update(appUser);
             db.Complete();
 
-            return CreatedAtRoute("DefaultApi", new { id = ticket.Id }, ticket);
+            return Ok(true);
         }
 
         // DELETE: api/Tickets/5

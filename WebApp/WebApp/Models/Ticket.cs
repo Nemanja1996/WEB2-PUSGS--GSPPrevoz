@@ -12,7 +12,6 @@ namespace WebApp.Models
         public int Id { get; set; }
         public int ?TicketTypeID { get; set; }
         public TicketType TicketType { get; set; }
-        [Required]
         public int CatalogueHistoryID { get; set; }
         public CatalogueHistory CatalogueHistory { get; set; }
         public string ApplicationUserID { get; set; }

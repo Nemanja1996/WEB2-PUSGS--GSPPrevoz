@@ -77,7 +77,7 @@ namespace WebApp.Controllers
             ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext()
                                     .GetUserManager<ApplicationUserManager>()
                                     .FindById(User.Identity.GetUserId());
-
+            
             return Ok(user);
 
         }

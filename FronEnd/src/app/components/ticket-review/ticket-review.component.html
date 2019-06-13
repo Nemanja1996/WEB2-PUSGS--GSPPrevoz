@@ -1,0 +1,14 @@
+Kupovina karte:<br>
+<select class="form-control" style="width: 20%;" [(ngModel)]="selectedTicketType">
+  <option *ngFor="let ticketType of ticketTypes" [ngValue]="ticketType">
+    {{ticketType.Name}}
+  </option>
+</select>
+
+<br><br>
+
+<button class="btn btn-secondary" (click)="buyTicket()" [disabled]="selectedTicketType==null">Kupi kartu</button>
+
+<br><br>
+
+{{message}}
