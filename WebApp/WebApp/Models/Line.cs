@@ -18,7 +18,7 @@ namespace WebApp.Models
         [Required]
         public int LineTypeId { get; set; }
         public LineType LineType { get; set; }
-        public List<Station> Stations { get; set; }
+        public virtual List<Station> Stations { get; set; }
         public List<Vehicle> Vehicles { get; set; }
         public List<Schedule> Schedules { get; set; }
     }

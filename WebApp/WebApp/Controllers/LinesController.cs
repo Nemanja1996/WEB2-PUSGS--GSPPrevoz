@@ -14,6 +14,7 @@ using WebApp.Persistence.UnitOfWork;
 
 namespace WebApp.Controllers
 {
+    [Authorize]
     public class LinesController : ApiController
     {
         //private ApplicationDbContext db = new ApplicationDbContext();
@@ -23,6 +24,7 @@ namespace WebApp.Controllers
             this.db = db;
         }
         // GET: api/Lines
+        [AllowAnonymous]
         public IEnumerable<Line> GetLines()
         {
             return db.Lines.GetAll();
@@ -30,6 +32,7 @@ namespace WebApp.Controllers
 
         // GET: api/Lines/5
         [ResponseType(typeof(Line))]
+        [AllowAnonymous]
         public IHttpActionResult GetLine(int id)
         {
             Line line = db.Lines.Get(id);
@@ -42,20 +45,27 @@ namespace WebApp.Controllers
         }
 
         //// PUT: api/Lines/5
-        [ResponseType(typeof(void))]
+        [ResponseType(typeof(bool))]
         public IHttpActionResult PutLine(int id, Line line)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return Ok(false);
             }
 
             if (id != line.Id)
             {
-                return BadRequest();
+                return Ok(false);
+            }
+            List<Station> stationList = new List<Station>();
+            foreach (var item in line.Stations)
+            {
+                stationList.Add(db.Stations.Get(item.Id));
             }
 
-            db.Lines.Update(line);
+            Line tempLine = db.Lines.Get(line.Id);
+            tempLine.Stations = stationList;
+            db.Lines.Update(tempLine);
 
             try
             {
@@ -65,7 +75,7 @@ namespace WebApp.Controllers
             {
                 if (!LineExists(id))
                 {
-                    return NotFound();
+                    return Ok(false);
                 }
                 else
                 {
@@ -73,7 +83,7 @@ namespace WebApp.Controllers
                 }
             }
 
-            return StatusCode(HttpStatusCode.NoContent);
+            return Ok(true);
         }
 
         // POST: api/Lines

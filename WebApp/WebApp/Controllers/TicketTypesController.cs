@@ -14,6 +14,7 @@ using WebApp.Persistence.UnitOfWork;
 
 namespace WebApp.Controllers
 {
+    [Authorize]
     public class TicketTypesController : ApiController
     {
         //private ApplicationDbContext db = new ApplicationDbContext();
@@ -25,6 +26,7 @@ namespace WebApp.Controllers
         }
 
         // GET: api/TicketTypes
+        [AllowAnonymous]
         public IEnumerable<TicketType> GetTicketTypes()
         {
             return db.TicketTypes.GetAll();
@@ -32,6 +34,7 @@ namespace WebApp.Controllers
 
         // GET: api/TicketTypes/5
         [ResponseType(typeof(TicketType))]
+        [AllowAnonymous]
         public IHttpActionResult GetTicketType(int id)
         {
             TicketType ticketType = db.TicketTypes.Get(id);

@@ -13,6 +13,7 @@ using WebApp.Persistence.UnitOfWork;
 
 namespace WebApp.Controllers
 {
+    [Authorize]
     public class VehicleTypesController : ApiController
     {
         //private WebAppContext db = new WebAppContext();
@@ -24,6 +25,7 @@ namespace WebApp.Controllers
             this.db = db;
         }
         // GET: api/VehicleTypes
+        [AllowAnonymous]
         public IEnumerable<VehicleType> GetVehicleTypes()
         {
             return db.VehicleTypes.GetAll();
@@ -31,6 +33,7 @@ namespace WebApp.Controllers
 
         // GET: api/VehicleTypes/5
         [ResponseType(typeof(VehicleType))]
+        [AllowAnonymous]
         public IHttpActionResult GetVehicleType(int id)
         {
             VehicleType vehicleType = db.VehicleTypes.Get(id);

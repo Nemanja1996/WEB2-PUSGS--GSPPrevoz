@@ -13,6 +13,7 @@ using WebApp.Persistence.UnitOfWork;
 
 namespace WebApp.Controllers
 {
+    [Authorize]
     public class StationsController : ApiController
     {
         //private WebAppContext db = new WebAppContext();
@@ -24,12 +25,14 @@ namespace WebApp.Controllers
         }
 
         // GET: api/Stations
+        [AllowAnonymous]
         public IEnumerable<Station> GetStations()
         {
             return db.Stations.GetAll();
         }
 
         // GET: api/Stations/5
+        [AllowAnonymous]
         [ResponseType(typeof(Station))]
         public IHttpActionResult GetStation(int id)
         {
@@ -57,24 +60,18 @@ namespace WebApp.Controllers
             }
 
             db.Stations.Update(station);
+            int result;
+                result = db.Complete();
+            if (result != -1)
+            {
+                return Ok(true);
 
-            try
-            {
-                db.Complete();
             }
-            catch (DbUpdateConcurrencyException)
+            else
             {
-                if (!StationExists(id))
-                {
-                    return Ok(false);
-                }
-                else
-                {
-                    throw;
-                }
+                return BadRequest("Podaci za ovu stanicu su upravo izmenjeni, pokusajte kasnije");
             }
 
-            return Ok(true);
         }
 
         // POST: api/Stations

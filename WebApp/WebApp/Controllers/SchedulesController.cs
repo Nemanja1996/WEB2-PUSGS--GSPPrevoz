@@ -15,6 +15,7 @@ using WebApp.Persistence.UnitOfWork;
 
 namespace WebApp.Controllers
 {
+    [Authorize]
     public class SchedulesController : ApiController
     {
         //private ApplicationDbContext db = new ApplicationDbContext();
@@ -25,6 +26,7 @@ namespace WebApp.Controllers
             this.db = db;
         }
         // GET: api/Schedules
+        [AllowAnonymous]
         public IEnumerable<Schedule> GetSchedules()
         {
             return db.Schedules.GetAll();
@@ -32,6 +34,7 @@ namespace WebApp.Controllers
 
         // GET: api/Schedules/5
         [ResponseType(typeof(Schedule))]
+        [AllowAnonymous]
         public IHttpActionResult GetSchedule(int id)
         {
             Schedule schedule = db.Schedules.Get(id);
@@ -115,6 +118,7 @@ namespace WebApp.Controllers
         }
         [ResponseType(typeof(ScheduleInfoBindingModel))]
         [Route("api/Schedules/ScheduleInfo")]
+        [AllowAnonymous]
         public IHttpActionResult GetScheduleInfo()
         {
             List<LineType> lineTtypes = db.LineTypes.GetAll().ToList();
@@ -127,6 +131,7 @@ namespace WebApp.Controllers
 
         [ResponseType(typeof(Schedule))]
         [Route("api/Schedules/ScheduleLine/{lineId}/{scheduleTypeId}")]
+        [AllowAnonymous]
         public IHttpActionResult GetScheduleLine(int lineId, int scheduleTypeId)
         {
             Schedule s = db.Schedules.Find(x => x.LineId == lineId && x.ScheduleTypeId == scheduleTypeId).FirstOrDefault();

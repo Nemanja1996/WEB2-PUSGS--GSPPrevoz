@@ -13,6 +13,7 @@ using WebApp.Persistence.UnitOfWork;
 
 namespace WebApp.Controllers
 {
+    [Authorize]
     public class VehiclesController : ApiController
     {
         //private WebAppContext db = new WebAppContext();
@@ -24,12 +25,14 @@ namespace WebApp.Controllers
         }
 
         // GET: api/Vehicles
+        [AllowAnonymous]
         public IEnumerable<Vehicle> GetVehicles()
         {
             return db.Vehicles.GetAll();
         }
 
         // GET: api/Vehicles/5
+        [AllowAnonymous]
         [ResponseType(typeof(Vehicle))]
         public IHttpActionResult GetVehicle(int id)
         {

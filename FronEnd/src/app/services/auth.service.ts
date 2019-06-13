@@ -50,6 +50,11 @@ export class AuthService {
 
           observable.complete();
         }
+        else if(role === "Controller"){
+          observable.next('controllor');
+
+          observable.complete();
+        }
       },
       err => {
       observable.next('greska')

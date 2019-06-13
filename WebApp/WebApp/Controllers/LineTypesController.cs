@@ -14,6 +14,7 @@ using WebApp.Persistence.UnitOfWork;
 
 namespace WebApp.Controllers
 {
+    [Authorize]
     public class LineTypesController : ApiController
     {
         //private ApplicationDbContext db = new ApplicationDbContext();
@@ -25,6 +26,7 @@ namespace WebApp.Controllers
         }
 
         // GET: api/LineTypes
+        [AllowAnonymous]
         public IEnumerable<LineType> GetLineTypes()
         {
             return db.LineTypes.GetAll();
@@ -32,6 +34,7 @@ namespace WebApp.Controllers
 
         // GET: api/LineTypes/5
         [ResponseType(typeof(LineType))]
+        [AllowAnonymous]
         public IHttpActionResult GetLineType(int id)
         {
             LineType lineType = db.LineTypes.Get(id);

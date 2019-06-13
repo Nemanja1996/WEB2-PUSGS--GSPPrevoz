@@ -323,6 +323,10 @@
     <Compile Include="Migrations\201906101354553_CatalogueChange1.Designer.cs">
       <DependentUpon>201906101354553_CatalogueChange1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906122147171_RowVersionStation.cs" />
+    <Compile Include="Migrations\201906122147171_RowVersionStation.Designer.cs">
+      <DependentUpon>201906122147171_RowVersionStation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -515,6 +519,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906101354553_CatalogueChange1.resx">
       <DependentUpon>201906101354553_CatalogueChange1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906122147171_RowVersionStation.resx">
+      <DependentUpon>201906122147171_RowVersionStation.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

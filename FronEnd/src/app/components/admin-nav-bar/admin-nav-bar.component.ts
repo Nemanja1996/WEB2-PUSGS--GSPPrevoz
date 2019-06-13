@@ -33,6 +33,9 @@ export class AdminNavBarComponent implements OnInit {
   stations(){
     this.router.navigate(["admin", "stations"])
   }
+  addControler(){
+    this.router.navigate(["admin", "addControlor"]);
+  }
 
   ngOnInit() {
   }

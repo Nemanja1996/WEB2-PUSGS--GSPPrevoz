@@ -36,7 +36,7 @@ import { ChangeScheduleComponent } from './components/change-schedule/change-sch
 import { AdminProfileComponent } from './components/admin-profile/admin-profile.component';
 import { AddStationComponent } from './components/add-station/add-station.component';
 import { StationsComponent } from './components/stations/stations.component';
-import { ApplicationUserHttpService, RegisterApplicationUserHttpService, UserProfileHttpService, EditAdminProfileHttpService, EditUserProfileService } from './services/user/user.service';
+import { ApplicationUserHttpService, RegisterApplicationUserHttpService, UserProfileHttpService, EditAdminProfileHttpService, EditUserProfileService, RegisterControllorHttpService } from './services/user/user.service';
 import { AgmCoreModule } from '@agm/core';
 import { UserNavBarComponent } from './components/user-nav-bar/user-nav-bar.component';
 import { UserHeaderComponent } from './components/user-header/user-header.component';
@@ -51,6 +51,13 @@ import { DeleteLineComponent } from './components/delete-line/delete-line.compon
 import { LineHttpService, LineTypeService } from './services/lines/line.service';
 import { AddCatalogueComponent } from './components/add-catalogue/add-catalogue.component';
 import { GetValidCatagoues, PostValidCatagoues } from './services/catalogue/catalogue.history.service';
+import { AddControlorComponent } from './components/add-controlor/add-controlor.component';
+import { ControllorComponent } from './components/controllor/controllor.component';
+import { ValidateTicketComponent } from './components/validate-ticket/validate-ticket.component';
+import { ControllorNavBarComponent } from './components/controllor-nav-bar/controllor-nav-bar.component';
+import { ControllorHeaderComponent } from './components/controllor-header/controllor-header.component';
+import { ControllorProfileComponent } from './components/controllor-profile/controllor-profile.component';
+import { TicketHttpService } from './services/ticket/ticket.service';
 
 const childrenRoutes : Routes = [
   {path: "logIn", component: LogInComponent},
@@ -79,7 +86,8 @@ const childrenRoutesAdmin : Routes = [
   {path: "addLine", component: AddLineComponent},
   {path: "changeLine", component: ChangeLineComponent},
   {path: "deleteLine", component: DeleteLineComponent},
-  {path: "addCatalogue", component: AddCatalogueComponent}
+  {path: "addCatalogue", component: AddCatalogueComponent},
+  {path: "addControlor", component: AddControlorComponent}
 ]
 
 const childrenRoutesUser : Routes = [
@@ -93,10 +101,16 @@ const childrenRoutesUser : Routes = [
   {path: "buyTicket", component: BuyTicketComponent}
 ]
 
+const childrenRoutesControllor : Routes = [
+  {path: "validateTicket", component: ValidateTicketComponent},
+  {path: "profile", component: ControllorProfileComponent}
+]
+
 const routes: Routes = [
   {path: "unauthorizedUser", component: UnauthorizeUserComponent, children: childrenRoutes},
   {path: "admin", component: AdminComponent, canActivate: [AuthGuard], children: childrenRoutesAdmin},
   {path: "user", component: UserComponent, children: childrenRoutesUser},
+  {path: "controllor", component: ControllorComponent, children: childrenRoutesControllor},
   {path: "", redirectTo: "/unauthorizedUser", pathMatch: "full"}
 ]
 
@@ -135,7 +149,14 @@ const routes: Routes = [
     AddLineComponent,
     ChangeLineComponent,
     DeleteLineComponent,
-    AddCatalogueComponent
+    AddCatalogueComponent,
+    AddControlorComponent,
+    ControllorComponent,
+    ValidateTicketComponent,
+    ControllorComponent,
+    ControllorNavBarComponent,
+    ControllorHeaderComponent,
+    ControllorProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -145,7 +166,7 @@ const routes: Routes = [
     FormsModule,
     AgmCoreModule.forRoot({apiKey: 'AIzaSyDnihJyw_34z5S1KZXp90pfTGAqhFszNJk'})
   ],
-    providers: [{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }, AuthService, ScheduleHttpService, CatalogueHttpService, DepartureHttpService, TimeTicketHttpService, AddScheduleHttpService, ChangeScheduleHttpService, DeleteScheduleHttpService, ApplicationUserHttpService, RegisterApplicationUserHttpService, GetAllStationsHttpService, AddStationHttpService, UserProfileHttpService, ChangeStationHttpService, DeleteStationHttpService, EditAdminProfileHttpService, EditUserProfileService, LineHttpService, LineTypeService, GetCatalogueHttpService, GetValidCatagoues, PostCatalogueHttpService, PostValidCatagoues],
+    providers: [{ provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }, AuthService, ScheduleHttpService, CatalogueHttpService, DepartureHttpService, TimeTicketHttpService, AddScheduleHttpService, ChangeScheduleHttpService, DeleteScheduleHttpService, ApplicationUserHttpService, RegisterApplicationUserHttpService, GetAllStationsHttpService, AddStationHttpService, UserProfileHttpService, ChangeStationHttpService, DeleteStationHttpService, EditAdminProfileHttpService, EditUserProfileService, LineHttpService, LineTypeService, GetCatalogueHttpService, GetValidCatagoues, PostCatalogueHttpService, PostValidCatagoues, RegisterControllorHttpService, TicketHttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -464,6 +464,39 @@ namespace WebApp.Controllers
 
         }
 
+        // POST api/Account/RegisterControllor
+        [HttpPost]
+        [Route("RegisterControllor")]
+        [ResponseType(typeof(bool))]
+        public async Task<IHttpActionResult> RegisterControllor(RegisterBindingModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var user = new ApplicationUser() { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName, BirthDate = model.BirthDate, Address = model.Address, PhoneNumber = model.PhoneNumber };
+
+            //user.PasswordHash = ApplicationUser.HashPassword(model.Password);
+            //UserManager.Create(user);
+
+            IdentityResult result = await UserManager.CreateAsync(user, model.Password);
+
+            if (!result.Succeeded)
+            {
+                return Ok(false);
+            }
+
+            result = await UserManager.AddToRoleAsync(user.Id, "Controller");
+            if (!result.Succeeded)
+            {
+                return Ok(false);
+            }
+
+            return Ok(true);
+
+        }
+
 
         // POST api/Account/RegisterExternal
         [OverrideAuthentication]

@@ -13,6 +13,7 @@ using WebApp.Persistence.UnitOfWork;
 
 namespace WebApp.Controllers
 {
+    [Authorize]
     public class ScheduleTypesController : ApiController
     {
         //private WebAppContext db = new WebAppContext();
@@ -24,12 +25,14 @@ namespace WebApp.Controllers
         }
 
         // GET: api/ScheduleTypes
+        [AllowAnonymous]
         public IEnumerable<ScheduleType> GetScheduleTypes()
         {
             return db.ScheduleTypes.GetAll();
         }
 
         // GET: api/ScheduleTypes/5
+        [AllowAnonymous]
         [ResponseType(typeof(ScheduleType))]
         public IHttpActionResult GetScheduleType(int id)
         {

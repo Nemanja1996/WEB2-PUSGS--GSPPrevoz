@@ -14,16 +14,19 @@ using WebApp.Persistence.UnitOfWork;
 
 namespace WebApp.Controllers
 {
+    [Authorize]
     public class CatalogueHistoriesController : ApiController
     {
         //private ApplicationDbContext db = new ApplicationDbContext();
         private IUnitOfWork db;
+
 
         public CatalogueHistoriesController(IUnitOfWork db)
         {
             this.db = db;
         }
         // GET: api/CatalogueHistories
+        [AllowAnonymous]
         public IEnumerable<CatalogueHistory> GetCatalogueHistory()
         {
             return db.CatalogueHistory.GetAll();
@@ -31,6 +34,7 @@ namespace WebApp.Controllers
 
         // GET: api/CatalogueHistories/5
         [ResponseType(typeof(CatalogueHistory))]
+        [AllowAnonymous]
         public IHttpActionResult GetCatalogueHistory(int id)
         {
             CatalogueHistory catalogueHistory = db.CatalogueHistory.Get(id);
@@ -92,23 +96,6 @@ namespace WebApp.Controllers
             return CreatedAtRoute("DefaultApi", new { id = catalogueHistory.Id }, catalogueHistory);
         }
 
-        //POST: api/CatalogueHistories
-       [ResponseType(typeof(bool))]
-        public IHttpActionResult PostCatalogueHistory(List<CatalogueHistory> catalogueHistory)
-        {
-            if (!ModelState.IsValid)
-            {
-                return Ok(false);
-            }
-            Catalogue catalogue1 = db.Catalogues.Find(x => x.ValidTo == null).FirstOrDefault();
-            foreach (var item in catalogueHistory)
-            {
-                db.CatalogueHistory.Add(new CatalogueHistory() { TicketPrice = item.TicketPrice, CatalogueID = catalogue1.Id });
-            }
-            db.Complete();
-
-            return Ok(true);
-        }
 
         // DELETE: api/CatalogueHistories/5
         [ResponseType(typeof(CatalogueHistory))]
@@ -127,6 +114,7 @@ namespace WebApp.Controllers
         }
 
         [Route("api/CatalogueHistories/ValidCatalogues")]
+        [AllowAnonymous]
         public IEnumerable<CatalogueHistory> GetValidCatalogues()
         {
             Catalogue catalogue = db.Catalogues.Find(x => x.ValidTo == null || x.ValidTo > DateTime.Now).FirstOrDefault();

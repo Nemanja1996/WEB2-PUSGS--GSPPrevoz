@@ -1,0 +1,23 @@
+<div class="container">
+  <h4>Uneti id karte</h4>
+    <table class="table table-striped" style="width: 70%;">
+      <tbody>
+        <tr>
+          <td colspan="1">
+            <form [formGroup]="validateForm" (ngSubmit)="validateTicket()" class="well form-horizontal">
+                <fieldset>
+                  <div class="col-md-8 inputGroupContainer">
+                    <div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span><input
+                        id="id" formControlName="ticketId" style="width: 40%;" class="form-control" required="true" type="text">
+                      </div>
+                      <br>
+                      <button type="submit" [disabled]="!validateForm.valid" class="btn btn-secondary">Proveri</button>
+                    </div>
+                </fieldset>
+            </form>
+          </td>
+        </tr>
+        {{message}}
+      </tbody>
+    </table>
+</div>

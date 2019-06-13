@@ -15,6 +15,7 @@ using WebApp.Persistence.UnitOfWork;
 
 namespace WebApp.Controllers
 {
+    [Authorize]
     public class CataloguesController : ApiController
     {
         //private ApplicationDbContext db = new ApplicationDbContext();
@@ -25,6 +26,7 @@ namespace WebApp.Controllers
             this.db = db;
         }
         // GET: api/Catalogues
+        [AllowAnonymous]
         public IEnumerable<Catalogue> GetCatalogue()
         {
             return db.Catalogues.GetAll();
@@ -32,6 +34,7 @@ namespace WebApp.Controllers
 
         // GET: api/Catalogues/5
         [ResponseType(typeof(Catalogue))]
+        [AllowAnonymous]
         public IHttpActionResult GetCatalogue(int id)
         {
             Catalogue catalogue = db.Catalogues.Get(id);
@@ -139,6 +142,7 @@ namespace WebApp.Controllers
 
         [ResponseType(typeof(CatalogueInfoBindingModel))]
         [Route("api/Catalogues/CatalogueInfo")]
+        [AllowAnonymous]
         public IHttpActionResult GetCatalogueInfo()
         {
             List<TicketType> ticketTypes = db.TicketTypes.GetAll().ToList();
@@ -162,6 +166,7 @@ namespace WebApp.Controllers
 
         [ResponseType(typeof(CatalogueInfoBindingModel))]
         [Route("api/Catalogues/CatalogueInfo/{id}")]
+        [AllowAnonymous]
         public IHttpActionResult GetCatalogueInfo(int id)
         {
             List<TicketType> ticketTypes = db.TicketTypes.GetAll().ToList();

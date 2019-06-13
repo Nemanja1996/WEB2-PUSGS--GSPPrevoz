@@ -1,0 +1,62 @@
+<h4>Prijava kontrolora</h4>
+<div class="row">
+    <form [formGroup]="addControlorForm" (ngSubmit)="register()">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="firstName">Ime</label>
+                <input type="text" required formControlName="firstName" class="form-control form-control-sm"
+                    id="firstName">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="lastName">Prezime</label>
+                <input type="text" required formControlName="lastName" class="form-control form-control-sm"
+                    id="lastName">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="Email">Email</label>
+                <input type="email" required formControlName="email" class="form-control form-control-sm" id="Email">
+            </div>
+            <div class="form-group col-md-6">
+            <label for="Password">Lozinka</label>
+                <input type="password" required formControlName="password" class="form-control form-control-sm"
+                    id="Password">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="PasswordConfirm">Ponovi lozinku</label>
+                <input type="password" required formControlName="confirmPassword" class="form-control form-control-sm"
+                    id="PasswordConfirm">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="phone">Telefon</label>
+                <input type="tel" class="form-control form-control-sm" formControlName="phoneNumber" id="phone">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="birth">Datum rodjenja</label>
+                <input type="date" required class="form-control form-control-sm" formControlName="birthdate" id="birth">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="address">Adresa</label>
+                <input type="text" class="form-control form-control-sm" formControlName="address" id="address">
+            </div>
+        </div>
+        <div class="error" style="color: red;"
+            *ngIf="registerForm.get('confirmPassword').errors && registerForm.get('confirmPassword').errors.ConfirmPassword">
+            Lozinke se ne poklapaju.
+        </div>
+        <div class="message">
+            {{message}}
+        </div>
+        <div>
+            <br>
+            <button type="submit" [disabled]="!registerForm.valid" class="btn btn-secondary">Registruj kontrolora</button>
+            <!-- <a href="/" class="btn btn-secondary">Otkazi</a> -->
+        </div>
+
+    </form>
+</div>

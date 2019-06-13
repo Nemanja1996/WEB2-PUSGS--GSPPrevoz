@@ -5,6 +5,7 @@ import { GetAllStationsHttpService, ChangeStationHttpService } from 'src/app/ser
 import { Router } from '@angular/router';
 import { GeoLocation } from 'src/app/models/map/geolocation';
 import { Validators, FormBuilder } from '@angular/forms';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-change-station',
@@ -63,7 +64,10 @@ export class ChangeStationComponent implements OnInit {
       else{
         this.message = "Neuspesna izmena stanice";
       }
-    });
+    },(error:HttpErrorResponse) => {
+      console.log(error.error);
+      this.message = JSON.stringify(error.error);
+  });
   }
 
   otkazi(){

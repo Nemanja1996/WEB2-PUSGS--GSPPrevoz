@@ -32,6 +32,9 @@ export class LogInComponent implements OnInit {
         else if (data === "user") {
           this.router.navigate(["user"]);
         }
+        else if(data === "controllor"){
+          this.router.navigate(["controllor"]);
+        }
         else{
           this.router.navigate(["unauthorizedUser", "logIn"]);
           this.message = "Pogresan email ili loznika";

@@ -16,6 +16,7 @@ using WebApp.Persistence.UnitOfWork;
 
 namespace WebApp.Controllers
 {
+    [Authorize]
     public class TicketsController : ApiController
     {
         //private ApplicationDbContext db = new ApplicationDbContext();
@@ -26,12 +27,14 @@ namespace WebApp.Controllers
             this.db = db;
         }
         // GET: api/Tickets
+        [AllowAnonymous]
         public IEnumerable<Ticket> GetTickets()
         {
             return db.Tickets.GetAll();
         }
 
         // GET: api/Tickets/5
+        [AllowAnonymous]
         [ResponseType(typeof(Ticket))]
         public IHttpActionResult GetTicket(int id)
         {
@@ -109,8 +112,82 @@ namespace WebApp.Controllers
 
             return Ok(ticket);
         }
+
+        [ResponseType(typeof(bool))]
+        [Route("api/Tickets/ValidateTicket/{id}")]
+        public IHttpActionResult PutValidateTicket(int id)
+        {
+            Ticket ticket = db.Tickets.Get(id);
+
+            if (ticket != null)
+            {
+                if (ticket.TicketTypeID == 1)
+                {
+                    if (ticket.TimeIssued.AddHours(1) < DateTime.Now)
+                    {
+                        ticket.IsValid = false;
+                        db.Complete();
+                        return Ok(false);
+                    }
+                    else
+                    {
+                        return Ok(true);
+                    }
+                }
+                else if (ticket.TicketTypeID == 2)
+                {
+                    if (ticket.TimeIssued.AddDays(1) < DateTime.Now)
+                    {
+                        ticket.IsValid = false;
+                        db.Complete();
+                        return Ok(false);
+                    }
+                    else
+                    {
+                        return Ok(true);
+                    }
+
+                }
+                else if (ticket.TicketTypeID == 3)
+                {
+                    if (ticket.TimeIssued.AddMonths(1) < DateTime.Now)
+                    {
+                        ticket.IsValid = false;
+                        db.Complete();
+                        return Ok(false);
+                    }
+                    else
+                    {
+                        return Ok(true);
+                    }
+                }
+                else if (ticket.TicketTypeID == 4)
+                {
+                    if (ticket.TimeIssued.AddYears(1) < DateTime.Now)
+                    {
+                        ticket.IsValid = false;
+                        db.Complete();
+                        return Ok(false);
+                    }
+                    else
+                    {
+                        return Ok(true);
+                    }
+                }
+                else
+                {
+                    return Ok(false);
+                }
+            }
+            else
+            {
+                return Ok(false);
+            }
+        }
+
         [ResponseType(typeof(bool))]
         [Route("api/Tickets/BuyTimeTicket")]
+        [AllowAnonymous]
         public IHttpActionResult PostTimeTicket(Email email)
         {
             Ticket ticket = new Ticket();
@@ -118,7 +195,9 @@ namespace WebApp.Controllers
             ticket.IsValid = true;
             ticket.TimeIssued = DateTime.Now;
             ticket.TicketTypeID = timeTicket.Id;
-            CatalogueHistory catalogueHistory = db.CatalogueHistory.Find(x => x.TicketTypeID == ticket.TicketTypeID).FirstOrDefault();
+
+            Catalogue catalogue = db.Catalogues.Find(x => x.ValidTo == null || x.ValidTo > DateTime.Now).FirstOrDefault();
+            CatalogueHistory catalogueHistory = db.CatalogueHistory.Find(x => x.TicketTypeID == ticket.TicketTypeID && x.CatalogueID == catalogue.Id).FirstOrDefault();
             ticket.CatalogueHistoryID = catalogueHistory.Id; 
             db.Tickets.Add(ticket);
             db.Complete();
@@ -127,7 +206,7 @@ namespace WebApp.Controllers
 
             try
             {
-                SendEmail("GSP Service", "prevoz@gsp.com", email.Value, "GSP Service, kupovina karte.", $"Postovani, Vasa karta traje sat vremena i istice {validTo}.\n  Hvala na koriscenju usluga");
+                SendEmail(email.Value, "GSP Service, kupovina karte.", $"Postovani, Vasa karta traje sat vremena i istice {validTo}.\n  Hvala na koriscenju usluga");
 
                 return Ok(true);
 
@@ -138,32 +217,25 @@ namespace WebApp.Controllers
             }
         }
 
-        private void SendEmail(string sendername, string sender, string recipient, string subject, string body)
+        private void SendEmail(string recipient, string subject, string body)
         {
-            // SMTP server,port,username,password should be obtained from C:\cornerstone\CFMLocal.txt (line 2?)
-            SmtpClient smtpClient = new SmtpClient("smtp.mailtrap.io", 2525)
+            MailMessage mail = new MailMessage();
+            SmtpClient smtpServer = new SmtpClient("smtp.gmail.com");
+
+            try
             {
-                // Milan's mail trap free SMTP credentials : u: "3af75f9040edca", p: "bc2ed058a47d71"  | host: "smtp.mailtrap.io", 2525
-                Credentials = new System.Net.NetworkCredential()
-                {
-                    UserName = "3af75f9040edca",
-                    Password = "bc2ed058a47d71"
-                },
+                mail.To.Add(recipient);
+            }
+            catch(Exception e) { }
 
-                EnableSsl = true
-            };
+            mail.Subject = subject;
+            mail.Body = body;
+            mail.From = new MailAddress("titovrentavehicle@gmail.com");
+            smtpServer.Port = 587;
+            smtpServer.Credentials = new NetworkCredential("titovrentavehicle@gmail.com", "drugtito");
+            smtpServer.EnableSsl = true;
 
-            MailAddress from = new MailAddress(sender, sendername);
-            MailAddress to = new MailAddress(recipient, "");
-            MailMessage mailMessage = new MailMessage(from, to)
-            {
-                Subject = subject,
-                Body = body
-            };
-
-
-
-            smtpClient.Send(mailMessage);
+            smtpServer.Send(mail);
         }
 
         protected override void Dispose(bool disposing)

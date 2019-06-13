@@ -11,6 +11,10 @@ export class RegisterApplicationUserHttpService extends BaseHttpService<Applicat
     specificUrl = "/api/Account/Register"
 }
 
+export class RegisterControllorHttpService extends BaseHttpService<ApplicationUser>{
+    specificUrl = "/api/Account/RegisterControllor"
+}
+
 export class UserProfileHttpService extends BaseHttpService<ApplicationUser> {
     specificUrl = "/api/Account/RegularUserInfo"
 }

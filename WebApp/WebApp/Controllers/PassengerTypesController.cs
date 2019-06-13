@@ -14,6 +14,7 @@ using WebApp.Persistence.UnitOfWork;
 
 namespace WebApp.Controllers
 {
+    [Authorize]
     public class PassengerTypesController : ApiController
     {
         //private ApplicationDbContext db = new ApplicationDbContext();
@@ -24,6 +25,7 @@ namespace WebApp.Controllers
             this.db = db;
         }
         // GET: api/PassengerTypes
+        [AllowAnonymous]
         public IEnumerable<PassengerType> GetPassengerTypes()
         {
             return db.PassengerTypes.GetAll();
@@ -31,6 +33,7 @@ namespace WebApp.Controllers
 
         // GET: api/PassengerTypes/5
         [ResponseType(typeof(PassengerType))]
+        [AllowAnonymous]
         public IHttpActionResult GetPassengerType(int id)
         {
             PassengerType passengerType = db.PassengerTypes.Get(id);

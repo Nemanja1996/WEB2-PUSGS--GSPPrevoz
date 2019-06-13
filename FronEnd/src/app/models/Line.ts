@@ -1,4 +1,5 @@
 import { Station } from './Station';
+import { LineType } from './LineType';
 
 export class Line{
     Id:number
@@ -6,4 +7,5 @@ export class Line{
     Number:number
     LineTypeId:number
     Stations: Station[] = [];
+    LineType: LineType;
 }
